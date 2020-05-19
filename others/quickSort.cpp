@@ -7,49 +7,46 @@
 #include <vector>
 #include <cmath>
 using namespace std;
-int quickSort(int left, int right);
-void divide(int left, int right);
-int a[] = {4, 5, 7, 9, 2, 1, 3, 11, 16};
+int quickSort(int a[],int left, int right);
+int divide(int a[],int left, int right);
 int main()
 {
-  quickSort(0, 8);
-  for (int i = 0; i < 9; i++)
-  {
-    cout << a[i] << " ";
-  }
-  return 0;
-}
-
-int quickSort(int left, int right)
-{
-  if(left==right)
+    int a[] = {4, 2, 23, 13, 55, 77, 345, 5, 7, 9, 2, 1, 3, 11, 16,99};
+    quickSort(a,0, 15);
+    for (int i = 0; i < 26; i++)
+    {
+        cout << a[i] << " ";
+    }
     return 0;
-  int mid = (left + right) >> 1;
-  cout << left << " " << right << endl;
-  divide(left, mid);
-  divide(mid, right);
-  quickSort(left, mid);
-  quickSort(mid, right);
-  return 0;
 }
 
-void divide(int left, int right)
+int quickSort(int a[] ,int left, int right)
 {
-  int divVal = a[left];
-  int i = left, j = right;
-  while (i < j)
-  {
-    while (a[j] >= divVal)
+    if (left < right)
     {
-      j--;
+        int mid = divide(a,left, right);
+        quickSort(a, left, mid - 1);
+        quickSort(a, mid + 1, right);
     }
-    while (a[i] <= divVal)
+    return 0;
+}
+
+int divide(int a[] ,int left, int right)
+{
+    int divVal = a[left];
+    while (left < right)
     {
-      i++;
+        while (left < right && a[right] >= divVal)
+        {
+            right--;
+        }
+        a[left] = a[right];
+        while (left < right && a[left] <= divVal)
+        {
+            left++;
+        }
+        a[right] = a[left];
     }
-    int tmp = a[i];
-    a[i] = a[j];
-    a[j] = tmp;
-  }
-  a[i] = divVal;
+    a[left] = divVal;
+    return left;
 }
