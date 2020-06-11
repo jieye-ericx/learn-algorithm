@@ -38,3 +38,12 @@ int solution(int n)
     }
     return -1;
 }
+{
+    "name" : "lldb build and debug active file",
+             "type" : "lldb",
+                      "request" : "launch",
+                                  "program" : "${fileDirname}/${fileBasenameNoExtension}",
+                                              "args" : [ "-arg1", "-arg2" ],
+                                                       "cwd" : "${workspaceFolder}",
+                                                               "preLaunchTask" : "g++ build active file"
+}

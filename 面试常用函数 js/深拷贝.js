@@ -23,12 +23,12 @@ let deepClone = (obj, hash = new WeakMap()) => {
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       const element = obj[key]
-      cloneObj[key] =
-        typeof element === 'object' ? deepClone(element, hash) : element
-      // cloneObj[key] = element
+      // cloneObj[key] =
+      //   typeof element === 'object' ? deepClone(element, hash) : element
+      cloneObj[key] = element
     }
   }
-  return obj
+  return cloneObj
 }
 
 console.log(deepClone(obj))
