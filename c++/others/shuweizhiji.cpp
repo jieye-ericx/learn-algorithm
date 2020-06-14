@@ -36,14 +36,10 @@ int solution(int n)
             return i;
         }
     }
+    cout << "213213";
+    cout << "213213";
+    cout << "213213";
+    cout << "213213";
+    cout << "213213";
     return -1;
-}
-{
-    "name" : "lldb build and debug active file",
-             "type" : "lldb",
-                      "request" : "launch",
-                                  "program" : "${fileDirname}/${fileBasenameNoExtension}",
-                                              "args" : [ "-arg1", "-arg2" ],
-                                                       "cwd" : "${workspaceFolder}",
-                                                               "preLaunchTask" : "g++ build active file"
 }
