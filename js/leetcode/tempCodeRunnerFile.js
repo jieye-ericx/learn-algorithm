@@ -1,2 +1,4 @@
-'ab'
-// let s2 = 
+) {
+    //   arr.push(s)
+    //   obj[s] = 1
+    // }
