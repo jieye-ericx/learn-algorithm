@@ -62,7 +62,7 @@ int correctcombinationSum(vector<int> &candidates, int target)
     // 这种最复杂的写法的初值我还没有发现怎么赋值，下面直接简化
     // 2.
     // 简化后dp[i][v]=dp[i-1][v]+dp[i][v-c[i]]
-    // 即原本是f(i,v)=f(i−1,v)+【f(i−1,v−c[i])+f(i−1,v−2c[i])⋯f(i−1,v−kc[i])】
+    // 即原本是ff(i,v)=f(i−1,v)+【f(i−1,v−c[i])+f(i−1,v−2c[i])⋯f(i−1,v−kc[i])】
     // 由于v=v-c[i]时，f(i,v−c[i])=【f(i−1,v−c[i])+f(i−1,v−2c[i])+f(i−1,v−3c[i])⋯f(i−1,v−kc[i])】
     // 所以两对【】中的东西相同，可以替换，少了一层循环。
     // 根据64行的公式可以得出二重循环的写法，再优化空间复杂度则可以使用一维数组
