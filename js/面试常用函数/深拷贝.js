@@ -1,3 +1,7 @@
+let aa = {
+  name: 'auto',
+  color: 'write',
+}
 const obj = {
   name: '1111',
   id: '31232131',
@@ -6,15 +10,12 @@ const obj = {
       name: 'audi',
       color: 'red',
     },
-    {
-      name: 'auto',
-      color: 'write',
-    },
+    aa,
   ],
-  funs:fun
+  funs: fun,
 }
-function fun(a,b) {
-  return a+b
+function fun(a, b) {
+  return a + b
 }
 let deepClone = (obj, hash = new WeakMap()) => {
   if (hash.has(obj)) return hash.get(obj)
@@ -23,9 +24,9 @@ let deepClone = (obj, hash = new WeakMap()) => {
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       const element = obj[key]
-      // cloneObj[key] =
-      //   typeof element === 'object' ? deepClone(element, hash) : element
-      cloneObj[key] = element
+      cloneObj[key] =
+        typeof element === 'object' ? deepClone(element, hash) : element
+      // cloneObj[key] = element
     }
   }
   return cloneObj
