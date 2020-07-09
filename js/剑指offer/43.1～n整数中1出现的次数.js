@@ -23,6 +23,20 @@
 * @param {number} n
 * @return {number}
 */
-var countDigitOne = function (n) {
-
+let countDigitOne = function (n) {
+  let count = 0, i = 1, pre = 0, back = 0, cur = 0;
+  while (n >= i) {
+    pre = parseInt(n / (i * 10));
+    back = n - parseInt(n / i) * i;
+    cur = parseInt(n / i) % 10;
+    if (cur == 0) {
+      count += pre * i;
+    } else if (cur == 1) {
+      count += pre * i + back + 1;
+    } else {
+      count += (pre + 1) * i
+    }
+    i *= 10;
+  }
+  return count;
 };
