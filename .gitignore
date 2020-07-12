@@ -1,5 +1,5 @@
 .vscode/
-*.exe
-*.dSYM
-*.exe.lnk
+**/*.exe
+**/*.dSYM
+**/*.exe.lnk
 **/tempCodeRunnerFile.*
