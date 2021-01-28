@@ -1,5 +1,13 @@
 .vscode/
+**/Debug/
+
+**/.DS_Store
 **/*.exe
+**/*.dsp
+**/*.dsw
+**/*.ncb
+**/*.opt
+**/*.plg
 **/*.dSYM
 **/*.exe.lnk
 **/tempCodeRunnerFile.*
