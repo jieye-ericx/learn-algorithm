@@ -8,6 +8,50 @@
  * 
  * 按照我的思路 ，常规dfs，但是vis运行后不需要重新赋值为0
  */
+let getDS = (num) => {
+  let ans = 0
+  while (num > 0) {
+    ans += (num % 10)
+    num = Math.floor(num / 10)
+  }
+  return ans
+}
+function movingCount(threshold, rows, cols) {
+  let arr = []
+  for (let i = 0; i < rows; i++) {
+    arr.push(new Array(cols).fill(0))
+  }
+  // console.log(arr);
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      if (getDS(i) + getDS(j) > threshold) arr[i][j] = 1;
+    }
+  }
+  let ans = 0
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      if (arr[i][j] === 0) {
+        if (i === 0 || j === 0) ans++;
+        else if (arr[i - 1][j] === 0 || arr[i][j - 1] === 0) {
+          ans++;
+        }
+      } else {
+        break
+      }
+    }
+  }
+  // console.log(arr);
+  // let ans = arr.reduce((pre, curr, index, arr) =>
+  //   pre + curr.reduce((pre, curr, index, arr) =>
+  //     curr === 0 ? pre + 1 : pre
+  //     , 0)
+  //   , 0)
+  return ans
+}
+
+console.log(movingCount(5, 10, 10))
+console.log(movingCount(10, 1, 100))
+// ------------------------------------------------------
 console.log(movingCount(5, 60, 60))
 function forwardCell(k, x, y) {
   let xysum = getDigitSum(x) + getDigitSum(y)
@@ -17,10 +61,10 @@ function forwardCell(k, x, y) {
     return
   }
   this.cells++
-  
+
   let newx, newy
   for (let i = 0; i < 4; i++) {
-    ;(newx = x + this.directs[i][0]), (newy = y + this.directs[i][1])
+    ; (newx = x + this.directs[i][0]), (newy = y + this.directs[i][1])
     if (newx >= this.rows || newy >= this.cols || newx < 0 || newy < 0) {
       continue
     }
@@ -61,7 +105,7 @@ function movingCount(threshold, rows, cols) {
   this.cells = 0
   this.rows = rows
   this.cols = cols
-  this.vis[0][0]=1
+  this.vis[0][0] = 1
   forwardCell.apply(this, [threshold, 0, 0])
   return this.cells
 }
