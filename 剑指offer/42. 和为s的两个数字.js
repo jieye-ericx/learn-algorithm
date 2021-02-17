@@ -28,5 +28,6 @@ var twoSum = function (nums, target) {
       j--;
     }
   }
+  return []//有可能找不到
 };
 
