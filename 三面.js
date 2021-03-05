@@ -6,7 +6,6 @@ function ListNode(x) {
 }
 
 function mergeSortedList(a, b) {
-  // TODO
   let list1 = a, list2 = b, ans = new ListNode(0), ansHead = ans;
   while (list1 && list2) {
     if (list1.value >= list2.value) {
