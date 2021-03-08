@@ -27,26 +27,26 @@ using namespace std;
 int L, M, a, b, arr[10002];
 int main()
 {
-    while (scanf("%d%d", &L, &M) != EOF)
+  while (scanf("%d%d", &L, &M) != EOF)
+  {
+    memset(arr, 0, sizeof(arr));
+    for (int i = 0; i < M; i++)
     {
-        memset(arr, 0, sizeof(arr));
-        for (int i = 0; i < M; i++)
-        {
-            scanf("%d%d", &a, &b);
-            for (int i = a; i <= b; i++)
-            {
-                arr[i] = 1;
-            }
-        }
-        int cnt = 0;
-        for (int i = 0; i <= L; i++)
-        {
-            cnt += arr[i] == 0 ? 1 : 0;
-        }
-        printf("%d", cnt);
+      scanf("%d%d", &a, &b);
+      for (int i = a; i <= b; i++)
+      {
+        arr[i] = 1;
+      }
     }
+    int cnt = 0;
+    for (int i = 0; i <= L; i++)
+    {
+      cnt += arr[i] == 0 ? 1 : 0;
+    }
+    printf("%d", cnt);
+  }
 
-    return 0;
+  return 0;
 }
 
 // 我的方法太死板
@@ -59,49 +59,49 @@ using namespace std;
 
 struct Node
 {
-    int start;
-    int end;
+  int start;
+  int end;
 
-    Node(int start, int end) : start(start), end(end) {}
+  Node(int start, int end) : start(start), end(end) {}
 
-    bool operator<(const Node &b) const
-    {
-        return start < b.start;
-    }
+  bool operator<(const Node &b) const
+  {
+    return start < b.start;
+  }
 };
 
 int main()
 {
-    int l, m;
-    while (cin >> l >> m)
+  int l, m;
+  while (cin >> l >> m)
+  {
+    vector<Node> trees;
+    int start, end;
+    for (int i = 0; i < m; i++)
     {
-        vector<Node> trees;
-        int start, end;
-        for (int i = 0; i < m; i++)
-        {
-            cin >> start >> end;
-            trees.emplace_back(start, end);
-        }
-        sort(trees.begin(), trees.end());
-        int cnt = l + 1;
-        int last = 0;
-        for (Node node : trees)
-            // 区间没有重叠
-            if (node.start >= last)
-            {
-                cnt -= node.end - node.start + (node.start != last);
-                last = node.end;
-            }
-            // 区间存在重叠
-            else
-            {
-                // 不是包含关系
-                if (node.end > last)
-                {
-                    cnt -= node.end - last;
-                    last = node.end;
-                }
-            }
-        cout << cnt << endl;
+      cin >> start >> end;
+      trees.emplace_back(start, end);
     }
+    sort(trees.begin(), trees.end());
+    int cnt = l + 1; //一共有cnt棵树
+    int last = 0;
+    for (Node node : trees)
+      // 区间没有重叠
+      if (node.start >= last)
+      {
+        cnt -= node.end - node.start + (node.start != last);
+        last = node.end;
+      }
+      // 区间存在重叠
+      else
+      {
+        // 不是包含关系
+        if (node.end > last)
+        {
+          cnt -= node.end - last;
+          last = node.end;
+        }
+      }
+    cout << cnt << endl;
+  }
 }
