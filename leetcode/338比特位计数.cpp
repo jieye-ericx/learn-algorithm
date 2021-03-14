@@ -23,6 +23,7 @@ vector<int> countBits(int num)
 
     for (int i = 1; i <= num; i++)
     {
+        // 如果是2的倍数，则更新base，且dp[2的倍数]=1
         if ((i & (i - 1)) == 0)
         {
             cout << i << endl;
@@ -31,6 +32,8 @@ vector<int> countBits(int num)
         }
         else
         {
+            // 如果不是2的倍数
+            // 那么对于i的二进制1xxxxxxx，其1的位数取决于xxxxxxx的位数+1
             dp[i] = dp[i - base] + 1;
         }
     }
