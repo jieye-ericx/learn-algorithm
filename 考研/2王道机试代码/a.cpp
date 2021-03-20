@@ -1,21 +1,36 @@
-#include <algorithm>
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <queue>
-#include <stack>
-#include <vector>
-#include <cmath>
-using namespace std;
-int a[10];
-int aaa()
+void init()
 {
-    return a[0] = 10;
+  for (int i = 0; i < 1002; i++)
+  {
+    father[i] = i;
+    hei[i] = 0;
+  }
 }
-int main()
+int fa(int x)
 {
-    cout << aaa();
-    cout << "\n"
-         << a[0];
-    return 0;
+  if (x != father[x])
+  {
+    father[x] = fa(father[x]);
+  }
+  return father[x];
 }
+void uni(int x, int y)
+{
+  x = fa(x);
+  y = fa(y);
+  if (x != y)
+  {
+    if (hei[x] < hei[y])
+    {
+      father[x] = y;
+    }
+    else if (hei[x] > hei[y])
+    {
+      father[y] = x;
+    }
+    else
+    {
+      father[x] = y;
+      hei[y]++;
+    }
+  }
