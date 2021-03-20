@@ -31,244 +31,244 @@ int calculateE(string s);
 vector<string> midTransLastE(string s); //!通用中缀转后缀
 int main()
 {
-    // cout << midTransLast("a+b-a*((c+d)/e-f)+g") << endl;
-    // vector<string> aa = midTransLastE("a+b-a*((c+d)/e-f)+g");
-    // for (int i = 0; i < aa.size(); i++)
-    // {
-    //     cout << aa[i] << " ";
-    // }
-    // cout << endl;
-    // ---------------------------------------------
-    // cout << midTransLast("3+22*2") << endl;
-    // vector<string> aa = midTransLastE("3+22*2");
-    // for (int i = 0; i < aa.size(); i++)
-    // {
-    //     cout << aa[i] << " ";
-    // }
-    // cout << endl;
+  // cout << midTransLast("a+b-a*((c+d)/e-f)+g") << endl;
+  // vector<string> aa = midTransLastE("a+b-a*((c+d)/e-f)+g");
+  // for (int i = 0; i < aa.size(); i++)
+  // {
+  //     cout << aa[i] << " ";
+  // }
+  // cout << endl;
+  // ---------------------------------------------
+  // cout << midTransLast("3+22*2") << endl;
+  // vector<string> aa = midTransLastE("3+22*2");
+  // for (int i = 0; i < aa.size(); i++)
+  // {
+  //     cout << aa[i] << " ";
+  // }
+  // cout << endl;
 
-    // cout << calculate(midTransLast("3 + 5 / 2")) << endl;
-    // cout << calculate(midTransLast("3 / 2")) << endl;
-    // cout << calculate(midTransLast("3 + 2*   2")) << endl;
-    // cout << calculate(midTransLast("321")) << endl;
+  // cout << calculate(midTransLast("3 + 5 / 2")) << endl;
+  // cout << calculate(midTransLast("3 / 2")) << endl;
+  // cout << calculate(midTransLast("3 + 2*   2")) << endl;
+  // cout << calculate(midTransLast("321")) << endl;
 
-    cout << calculateE("3 + 5 / 2") << endl;
-    cout << calculateE("31 / 2") << endl;
-    cout << calculateE("323 + 2231*   2") << endl;
-    cout << calculateE("321") << endl;
-    // calculate(" 3+5 / 2 ");
-    return 0;
+  cout << calculateE("3 + 5 / 2") << endl;
+  cout << calculateE("31 / 2") << endl;
+  cout << calculateE("323 + 2231*   2") << endl;
+  cout << calculateE("321") << endl;
+  // calculate(" 3+5 / 2 ");
+  return 0;
 }
 int calculateE(string s)
 {
-    // 先把s转成后缀
-    vector<string> ss = midTransLastE(s);
-    // for (int i = 0; i < ss.size(); i++)
-    // {
-    //     cout << ss[i] << " ";
-    // }
-    // cout << endl;
+  // 先把s转成后缀
+  vector<string> ss = midTransLastE(s);
+  // for (int i = 0; i < ss.size(); i++)
+  // {
+  //     cout << ss[i] << " ";
+  // }
+  // cout << endl;
 
-    return calLastE(ss);
+  return calLastE(ss);
 }
 int calLastE(vector<string> s)
 {
-    stack<int> ss;
-    for (int i = 0; i < s.size(); i++)
+  stack<int> ss;
+  for (int i = 0; i < s.size(); i++)
+  {
+    if (s[i] == "+" || s[i] == "-" || s[i] == "*" || s[i] == "/")
     {
-        if (s[i] == "+" || s[i] == "-" || s[i] == "*" || s[i] == "/")
-        {
-            int a = ss.top(), c;
-            ss.pop();
-            int b = ss.top();
-            ss.pop();
-            if (s[i] == "+")
-            {
-                c = b + a;
-            }
-            else if (s[i] == "-")
-            {
-                c = b - a;
-            }
-            else if (s[i] == "*")
-            {
-                c = b * a;
-            }
-            else
-            {
-                c = b / a;
-            }
-            ss.push(c);
-        }
-        else
-        {
-            int tmp = stoi(s[i]);
-            ss.push(tmp);
-        }
+      int a = ss.top(), c;
+      ss.pop();
+      int b = ss.top();
+      ss.pop();
+      if (s[i] == "+")
+      {
+        c = b + a;
+      }
+      else if (s[i] == "-")
+      {
+        c = b - a;
+      }
+      else if (s[i] == "*")
+      {
+        c = b * a;
+      }
+      else
+      {
+        c = b / a;
+      }
+      ss.push(c);
     }
-    return ss.top();
+    else
+    {
+      int tmp = stoi(s[i]);
+      ss.push(tmp);
+    }
+  }
+  return ss.top();
 }
 
 // 多位数字加强版
 vector<string> midTransLastE(string s)
 {
-    s = "#" + s + '#';
-    map<char, int> isp;
-    map<char, int> icp;
-    isp['#'] = 0, icp['#'] = 0;
-    isp['('] = 1, icp['('] = 6;
-    isp['*'] = 5, icp['*'] = 4;
-    isp['/'] = 5, icp['/'] = 4;
-    isp['+'] = 3, icp['+'] = 2;
-    isp['-'] = 3, icp['-'] = 2;
-    isp[')'] = 6, icp[')'] = 1;
-    // int isp[] = {0, 1, 5, 3, 6}; //#,( ,*/,+-,)
-    // int icp[] = {0, 6, 4, 2, 1}; //#,( ,*/,+-,)
-    vector<string> ans;
-    stack<char> ss;
-    ss.push(s[0]);
-    for (int i = 1; i < s.size(); i++)
-    {
-        if (s[i] == ' ') //过滤空格
-            continue;
-        if (!isOp(s[i]))
-        {
-            string tmp = "";
-            while (i < s.size() && !isOp(s[i]))
-            {
-                tmp += s[i];
-                i++;
-            }
-            i--;
-            ans.push_back(tmp);
-        }
-        else
-        {
-            if (isp[ss.top()] < icp[s[i]])
-            {
-                ss.push(s[i]);
-            }
-            else
-            {
-                while (isp[ss.top()] > icp[s[i]])
-                {
-                    if (!(ss.top() == '(' || ss.top() == ')' || ss.top() == '#'))
-                    {
-                        string a = "";
-                        a += ss.top();
-                        ans.push_back(a);
-                    }
-                    ss.pop();
-                }
-                //注意while结束后可能会因为isp[ss.top()] == icp[s[i]]，即出现括号导致（无法出栈；
-                if (isp[ss.top()] == icp[s[i]] && ss.top() == '(')
-                    ss.pop();
-                ss.push(s[i]);
-            }
-        }
+  s = "#" + s + '#';
+  map<char, int> isp;
+  map<char, int> icp;
+  isp['#'] = 0, icp['#'] = 0;
+  isp['('] = 1, icp['('] = 6;
+  isp['*'] = 5, icp['*'] = 4;
+  isp['/'] = 5, icp['/'] = 4;
+  isp['+'] = 3, icp['+'] = 2;
+  isp['-'] = 3, icp['-'] = 2;
+  isp[')'] = 6, icp[')'] = 1;
+  // int isp[] = {0, 1, 5, 3, 6}; //#,( ,*/,+-,)
+  // int icp[] = {0, 6, 4, 2, 1}; //#,( ,*/,+-,)
+  vector<string> ans;
+  stack<char> ss;
+  ss.push(s[0]);
+  for (int i = 1; i < s.size(); i++)
+  {
+    if (s[i] == ' ') //过滤空格
+      continue;
+    if (!isOp(s[i]))
+    { //是数字的话就遍历所有位数并直接输出
+      string tmp = "";
+      while (i < s.size() && !isOp(s[i]))
+      {
+        tmp += s[i];
+        i++;
+      }
+      i--;
+      ans.push_back(tmp);
     }
-    return ans;
+    else
+    {
+      if (isp[ss.top()] < icp[s[i]])
+      {
+        ss.push(s[i]);
+      }
+      else
+      {
+        while (isp[ss.top()] > icp[s[i]])
+        {
+          if (!(ss.top() == '(' || ss.top() == ')' || ss.top() == '#'))
+          {
+            string a = "";
+            a += ss.top();
+            ans.push_back(a);
+          }
+          ss.pop();
+        }
+        //注意while结束后可能会因为isp[ss.top()] == icp[s[i]]，即出现括号导致（无法出栈；
+        if (isp[ss.top()] == icp[s[i]] && ss.top() == '(')
+          ss.pop();
+        ss.push(s[i]);
+      }
+    }
+  }
+  return ans;
 }
 bool isOp(char a)
 {
-    return a == '+' || a == '-' || a == '*' || a == '/' || a == '(' || a == ')' || a == '#';
+  return a == '+' || a == '-' || a == '*' || a == '/' || a == '(' || a == ')' || a == '#';
 }
 
 //! 中缀转后缀 字母变量或个位数算式可用 整个下面都是旧版本
 
 string midTransLast(string s)
 {
-    s = "#" + s + '#';
-    map<char, int> isp;
-    map<char, int> icp;
-    isp['#'] = 0, icp['#'] = 0;
-    isp['('] = 1, icp['('] = 6;
-    isp['*'] = 5, icp['*'] = 4;
-    isp['/'] = 5, icp['/'] = 4;
-    isp['+'] = 3, icp['+'] = 2;
-    isp['-'] = 3, icp['-'] = 2;
-    isp[')'] = 6, icp[')'] = 1;
-    // int isp[] = {0, 1, 5, 3, 6}; //#,( ,*/,+-,)
-    // int icp[] = {0, 6, 4, 2, 1}; //#,( ,*/,+-,)
-    string ans = "";
-    stack<char> ss;
-    ss.push(s[0]);
-    for (int i = 1; i < s.size(); i++)
+  s = "#" + s + '#';
+  map<char, int> isp;
+  map<char, int> icp;
+  isp['#'] = 0, icp['#'] = 0;
+  isp['('] = 1, icp['('] = 6;
+  isp['*'] = 5, icp['*'] = 4;
+  isp['/'] = 5, icp['/'] = 4;
+  isp['+'] = 3, icp['+'] = 2;
+  isp['-'] = 3, icp['-'] = 2;
+  isp[')'] = 6, icp[')'] = 1;
+  // int isp[] = {0, 1, 5, 3, 6}; //#,( ,*/,+-,)
+  // int icp[] = {0, 6, 4, 2, 1}; //#,( ,*/,+-,)
+  string ans = "";
+  stack<char> ss;
+  ss.push(s[0]);
+  for (int i = 1; i < s.size(); i++)
+  {
+    if (s[i] == ' ') //过滤空格
+      continue;
+    if (!isOp(s[i]))
     {
-        if (s[i] == ' ') //过滤空格
-            continue;
-        if (!isOp(s[i]))
-        {
-            // 操作数直接输出,对于多位数字，确实会出错
-            ans += s[i];
-        }
-        else
-        {
-            if (isp[ss.top()] < icp[s[i]])
-            {
-                ss.push(s[i]);
-            }
-            else
-            {
-                while (isp[ss.top()] > icp[s[i]])
-                {
-                    if (!(ss.top() == '(' || ss.top() == ')' || ss.top() == '#'))
-                    {
-                        ans += ss.top();
-                    }
-                    ss.pop();
-                }
-                //注意while结束后可能会因为isp[ss.top()] == icp[s[i]]，即出现括号导致（无法出栈；
-                if (isp[ss.top()] == icp[s[i]] && ss.top() == '(')
-                    ss.pop();
-                ss.push(s[i]);
-            }
-        }
+      // 操作数直接输出,对于多位数字，确实会出错
+      ans += s[i];
     }
-    return ans;
+    else
+    {
+      if (isp[ss.top()] < icp[s[i]])
+      {
+        ss.push(s[i]);
+      }
+      else
+      {
+        while (isp[ss.top()] > icp[s[i]])
+        {
+          if (!(ss.top() == '(' || ss.top() == ')' || ss.top() == '#'))
+          {
+            ans += ss.top();
+          }
+          ss.pop();
+        }
+        //注意while结束后可能会因为isp[ss.top()] == icp[s[i]]，即出现括号导致（无法出栈；
+        if (isp[ss.top()] == icp[s[i]] && ss.top() == '(')
+          ss.pop();
+        ss.push(s[i]);
+      }
+    }
+  }
+  return ans;
 }
 
 int calLast(string s)
 {
-    stack<int> ss;
-    for (int i = 0; i < s.size(); i++)
+  stack<int> ss;
+  for (int i = 0; i < s.size(); i++)
+  {
+    if (isOp(s[i]))
     {
-        if (isOp(s[i]))
-        {
-            int a = ss.top(), c;
-            ss.pop();
-            int b = ss.top();
-            ss.pop();
-            switch (s[i])
-            {
-            case '+':
-                c = b + a;
-                break;
-            case '-':
-                c = b - a;
-                break;
-            case '*':
-                c = b * a;
-                break;
-            case '/':
-                c = b / a;
-                break;
+      int a = ss.top(), c;
+      ss.pop();
+      int b = ss.top();
+      ss.pop();
+      switch (s[i])
+      {
+      case '+':
+        c = b + a;
+        break;
+      case '-':
+        c = b - a;
+        break;
+      case '*':
+        c = b * a;
+        break;
+      case '/':
+        c = b / a;
+        break;
 
-            default:
-                break;
-            }
-            ss.push(c);
-        }
-        else
-        {
-            int tmp = s[i++] - '0';
-            while (i < s.size() && !isOp(s[i++]))
-            {
-                tmp = tmp * 10 + (s[i] - '0');
-            }
-            i--;
-            ss.push(tmp);
-        }
+      default:
+        break;
+      }
+      ss.push(c);
     }
-    return ss.top();
+    else
+    {
+      int tmp = s[i++] - '0';
+      while (i < s.size() && !isOp(s[i++]))
+      {
+        tmp = tmp * 10 + (s[i] - '0');
+      }
+      i--;
+      ss.push(tmp);
+    }
+  }
+  return ss.top();
 }
