@@ -22,8 +22,8 @@ candidates 中的每个数字在每个组合中只能使用一次。
 输入: candidates = [2,5,2,1,2], target = 5,
 所求解集为:
 [
-  [1,2,2],
-  [5]
+  [1,2,2],
+  [5]
 ]
  */
 /**
@@ -58,15 +58,17 @@ var combinationSum2 = function (candidates, target) {
   }
   dfs(ans, target, tmpArr)
   // console.log(ans)
-    // dp
-    let dp = Array([candidates.length]).fill(0)
-    dp[1]
-    for (let i = 2; i <= candidates.length; i++){
-        for (let j = 1; j <= target; j++){
-            dp[]
-        }
+  // dp
+  let dp = Array([candidates.length]).fill(0)
+  dp[1]
+  for (let i = 2; i <= candidates.length; i++) {
+    for (let j = 1; j <= target; j++) {
+      // dp[]
     }
+  }
   return ans
 }
 console.log(combinationSum2([10, 1, 2, 7, 6, 1, 5], 8))
 console.log(combinationSum2([2, 5, 2, 1, 2], 5))
+
+var combinationSum2 = function (candidates, target) { }
