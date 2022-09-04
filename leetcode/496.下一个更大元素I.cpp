@@ -29,7 +29,8 @@ nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位
 using namespace std;
 int main()
 {
-
+    int a;
+    cin >> a;
     return 0;
 }
 vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
