@@ -59,6 +59,7 @@
  * 进阶：你可以想出一个时间复杂度小于 O(n^2) 的算法吗？
  *
  */
+package main
 
 // @lc code=start
 func twoSum(nums []int, target int) []int {

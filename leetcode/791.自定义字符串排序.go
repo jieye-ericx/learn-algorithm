@@ -22,7 +22,7 @@
  *
  *
  *
- * 示例 1:
+ * 示例 1:``
  *
  *
  * 输入: order = "cba", s = "abcd"
@@ -50,34 +50,35 @@
  *
  *
  */
-package t
+package main
 
 import (
 	"strings"
 )
 
-// @lc code=start
+// @lc code6=start
 func customSortString(order string, s string) string {
-    v:=[26]int{}
-    ans:=""
-	for _,val:= range s {
-        v[val-'a']++
-    }
+	v := [26]int{}
+	ans := ""
+	for _, val := range s {
+		v[val-'a']++
+	}
 
-    for _,val:= range order {
-        // ddaf
-        if(v[val-'a']>0){
-        ans+=strings.Repeat(string(val), v[val-'a'])
-        v[val-'a']=0
-        }
-    }
+	for _, val := range order {
+		// ddaf
+		if v[val-'a'] > 0 {
+			ans += strings.Repeat(string(val), v[val-'a'])
+			v[val-'a'] = 0
+		}
+	}
 
-    for i,val:= range v {
-        if val!=0 {
-            ans+=strings.Repeat(string(i+'a'), val)
-        }
-    }
+	for i, val := range v {
+		if val != 0 {
+			ans += strings.Repeat(string(i+'a'), val)
+		}
+	}
 
-    return ans
+	return ans
 }
+
 // @lc code=end

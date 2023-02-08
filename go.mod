@@ -1,3 +1,3 @@
-module algorithm/leetcode
+module leetcode
 
 go 1.19

@@ -52,7 +52,7 @@
  *
  *
  */
-package leetcode
+package main
 
 // @lc code=start
 func expand(s, t string) bool {
