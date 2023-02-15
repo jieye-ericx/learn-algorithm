@@ -60,6 +60,8 @@
  *
  */
 
+// ! 优先 向上 和 向左 走，可以避免 z 那个坑
+//
 // @lc code=start
 func alphabetBoardPath(target string) string {
 	si := make(map[int]int)
