@@ -59,6 +59,8 @@
  */
 package main
 
+import "fmt"
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -78,18 +80,29 @@ type TreeNode struct {
 */
 
 func main() {
-	b := &TreeNode{
+	// b := &TreeNode{
+	// 	Val: 2,
+	// }
+	d := &TreeNode{
 		Val: 2,
 	}
+	// e := &TreeNode{
+	// 	Val: 7,
+	// }
 	c := &TreeNode{
-		Val: 3,
+		Val:  3,
+		Left: d,
 	}
 	a := &TreeNode{
-		Val:   1,
-		Left:  b,
+		Val: -6,
+		// Left:  b,
 		Right: c,
 	}
-	maxPathSum(a)
+	// a := &TreeNode{
+	// 	Val: -6,
+	// }
+
+	fmt.Println(maxPathSum(a))
 }
 func maxPathSum(root *TreeNode) int {
 	if root == nil {
@@ -99,19 +112,20 @@ func maxPathSum(root *TreeNode) int {
 	return max(a1, a2)
 }
 
+// ! 根据这篇评论的想法写的 https://leetcode.cn/problems/binary-tree-maximum-path-sum/comments/690627
 func digui(root *TreeNode) (max156, max234 int) {
 	if root == nil {
-		return 0, 0
+		return -0xffffff, -0xffffff
 	}
 	a1, b1 := digui(root.Left)
 	a2, b2 := digui(root.Right)
 
-	max156 = max(max156, a1+root.Val+a2)
-	max156 = max(max156, root.Val)
-	max156 = max(b1, b2)
+	max156 = max(a1, a2)
+	max156 = max(max156, max(b1, b2))
+	max156 = max(max156, b1+root.Val+b2)
 
 	max234 = max(b1, b2) + root.Val
-
+	max234 = max(max234, root.Val)
 	return
 }
 
