@@ -57,46 +57,116 @@ import "fmt"
 
 // @lc code=start
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
+    totalLength := len(nums1) + len(nums2)
+    if totalLength%2 == 1 {
+        midIndex := totalLength/2
+        return float64(getKthElement(nums1, nums2, midIndex + 1))
+    } else {
+        midIndex1, midIndex2 := totalLength/2 - 1, totalLength/2
+        return float64(getKthElement(nums1, nums2, midIndex1 + 1) + getKthElement(nums1, nums2, midIndex2 + 1)) / 2.0
+    }
+    return 0
+}
+
+func getKthElement(nums1, nums2 []int, k int) int {
+    index1, index2 := 0, 0
+    for {
+        if index1 == len(nums1) {
+            return nums2[index2 + k - 1]
+        }
+        if index2 == len(nums2) {
+            return nums1[index1 + k - 1]
+        }
+        if k == 1 {
+            return min(nums1[index1], nums2[index2])
+        }
+        half := k/2
+        newIndex1 := min(index1 + half, len(nums1)) - 1
+        newIndex2 := min(index2 + half, len(nums2)) - 1
+        pivot1, pivot2 := nums1[newIndex1], nums2[newIndex2]
+        if pivot1 <= pivot2 {
+            k -= (newIndex1 - index1 + 1)
+            index1 = newIndex1 + 1
+        } else {
+            k -= (newIndex2 - index2 + 1)
+            index2 = newIndex2 + 1
+        }
+    }
+    return 0
+}
+
+func min(x, y int) int {
+    if x < y {
+        return x
+    }
+    return y
+}
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/median-of-two-sorted-arrays/solution/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-s-114/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+// 这个方法的复杂度虽然是M+N，但是仍然没有达到题目说的最优
+func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	i, j, k := 0, 0, 0
 	l1, l2 := len(nums1), len(nums2)
-	println(l1, l2)
-	s := make([]int, l1+l2)
-	for ; i < l1 && j < l2; k++ {
-		fmt.Println(i, j, s)
+	midIndex1, midIndex2 := (l1+l2)/2-1, (l1+l2)/2
+	var mid1, mid2 int
+	for ; i < l1 && j < l2 && k <= midIndex2; k++ {
 		if nums1[i] <= nums2[j] {
-			s[k] = nums1[i]
+			if k == midIndex1 {
+				mid1 = nums1[i]
+			}
+			if k == midIndex2 {
+				mid2 = nums1[i]
+			}
 			i++
 		} else {
-			s[k] = nums2[j]
+			if k == midIndex1 {
+				mid1 = nums2[j]
+			}
+			if k == midIndex2 {
+				mid2 = nums2[j]
+			}
 			j++
 		}
 	}
-	if i != l1 {
-		for i < l1 {
-			s[k] = nums1[i]
-			k++
-			i++
+	if k != midIndex2+1 {
+		if i != l1 {
+			for ; i < l1; i++ {
+				if k == midIndex1 {
+					mid1 = nums1[i]
+				}
+				if k == midIndex2 {
+					mid2 = nums1[i]
+					break
+				}
+				k++
+			}
+		}
+		if j != l2 {
+			for ; j < l2; j++ {
+				if k == midIndex1 {
+					mid1 = nums2[j]
+				}
+				if k == midIndex2 {
+					mid2 = nums2[j]
+					break
+				}
+				k++
+			}
 		}
 	}
-	if j != l2 {
-		for j < l2 {
-			s[k] = nums2[j]
-			k++
-			j++
-		}
-	}
-	fmt.Println(s)
 	if (l1+l2)%2 == 0 {
-		o := int((l1 + l2) / 2)
-		return float64((float64(s[o]) + float64(s[o-1])) / 2)
+		return (float64(mid1) + float64(mid2)) / 2
 	} else {
-		return float64(s[(l1+l2-1)/2])
+		return float64(mid2)
 	}
 }
 
 func main() {
-	nums1 := []int{0, 0, 0, 0, 0}
-	nums2 := []int{-1, 0, 0, 0, 0, 0, 1}
+	nums1 := []int{1, 2}
+	nums2 := []int{3, 4}
 	fmt.Println(findMedianSortedArrays(nums1, nums2))
 }
 

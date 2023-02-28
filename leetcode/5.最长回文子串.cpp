@@ -39,7 +39,7 @@ string longestPalindrome(string s)
   {
     for (int j = i + 1; j < n; j++)
     {
-      dp[i][j] = (s[i] == s[j]) && dp[i + 1][j - 1];
+      dp[i][j] = s[i] == s[j] && dp[i + 1][j - 1];
       // !虽然理论上i越小j越大越好，但需要判断下新j - i + 1（ans的长度）是否大于现有的
       if (dp[i][j] == 1 && (j - i + 1) >= ans.size())
       {
