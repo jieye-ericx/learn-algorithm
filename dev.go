@@ -3,34 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	N := 100
-	K := 20
-	fmt.Println(getKValue(N, K))
-}
-
-func getKValue(N, K int) []int {
-	l, ln := 0, N
-	for ln != 0 {
-		l++
-		ln /= 10
+	c := make(chan int)
+	for i := 0; i <= 10; i++ {
+		fmt.Println(111)
+		c <- i
 	}
-	// fmt.Println(l)
-	initV, cnt := make([]int, l), 1
-	initV[0] = 1
-	for cnt < K {
-		for i := 1; i < l; i++ {
-			if initV[i] != initV[i-1] {
-				initV[i]++
-				fmt.Println(initV)
-				cnt++
-			}
+	go func() {
+		for item := range c {
+			fmt.Println(item)
 		}
-	}
-	return initV
+	}()
 }
-
-// func setZero(start int, a *[]int) {
-// 	for i := start; i < len(a); i++ {
-// 		a[i] = 0
-// 	}
-// }
