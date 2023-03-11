@@ -1,5 +1,5 @@
 /**
- * 
+ * 39. 组合总和
 candidates 中的数字可以无限制重复被选取。
 
 说明：
@@ -31,32 +31,32 @@ candidates 中的数字可以无限制重复被选取。
  * @return {number[][]}
  */
 var combinationSum = function (candidates, target) {
-  candidates.sort((a, b) => a > b)
+  candidates.sort((a, b) => a > b);
   let tmpArr = [],
-    ans = []
+    ans = [];
   let dfs = () => {
-    const nowVal = tmpArr.reduce((pri, cur, ind, arr) => pri + cur, 0)
+    const nowVal = tmpArr.reduce((pri, cur, ind, arr) => pri + cur, 0);
     if (nowVal > target) {
-      return
+      return;
     } else if (nowVal === target) {
-      const outArr = Array.from(tmpArr).sort((a, b) => a - b)
-      const out = JSON.stringify(outArr)
+      const outArr = Array.from(tmpArr).sort((a, b) => a - b);
+      const out = JSON.stringify(outArr);
       if (!ans.some((arr) => JSON.stringify(arr) === out)) {
-        ans.push(outArr)
+        ans.push(outArr);
       }
-      return
+      return;
     }
     // let ptr = candidates.findIndex(ele => ele >= (target - nowVal))
     for (let ptr = 0; candidates[ptr] <= target - nowVal; ptr++) {
-      tmpArr.push(candidates[ptr])
-      dfs()
-      tmpArr.pop()
+      tmpArr.push(candidates[ptr]);
+      dfs();
+      tmpArr.pop();
     }
-  }
-  dfs()
+  };
+  dfs();
   // console.log(ans)
-  return ans
-}
+  return ans;
+};
 
-console.log(combinationSum([8, 7, 4, 3], 11))
-console.log(combinationSum([2, 3, 5], 8))
+console.log(combinationSum([8, 7, 4, 3], 11));
+console.log(combinationSum([2, 3, 5], 8));

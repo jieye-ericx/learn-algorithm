@@ -1,4 +1,4 @@
-/**
+/**40. 组合总和 II
  * 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
 
 candidates 中的每个数字在每个组合中只能使用一次。
@@ -32,43 +32,43 @@ candidates 中的每个数字在每个组合中只能使用一次。
  * @return {number[][]}
  */
 var combinationSum2 = function (candidates, target) {
-  candidates.sort((a, b) => a > b)
+  candidates.sort((a, b) => a > b);
   var tmpArr = [],
     ans = [],
-    vis = new Array(candidates.length).fill(0)
+    vis = new Array(candidates.length).fill(0);
   var dfs = (arr, rest, tmp) => {
     if (rest < 0) {
-      return
+      return;
     } else if (rest === 0) {
-      var outArr = [...Array.from(tmpArr).sort((a, b) => a - b)]
-      var out = JSON.stringify(outArr)
+      var outArr = [...Array.from(tmpArr).sort((a, b) => a - b)];
+      var out = JSON.stringify(outArr);
       if (!arr.some((arr) => JSON.stringify(arr) === out)) {
-        arr.push(outArr)
+        arr.push(outArr);
       }
-      return
+      return;
     }
     for (var ptr = 0; candidates[ptr] <= rest; ptr++) {
-      if (vis[ptr] === 1) continue
-      vis[ptr] = 1
-      tmp.push(candidates[ptr])
-      dfs(arr, rest - candidates[ptr], tmp)
-      tmp.pop()
-      vis[ptr] = 0
+      if (vis[ptr] === 1) continue;
+      vis[ptr] = 1;
+      tmp.push(candidates[ptr]);
+      dfs(arr, rest - candidates[ptr], tmp);
+      tmp.pop();
+      vis[ptr] = 0;
     }
-  }
-  dfs(ans, target, tmpArr)
+  };
+  dfs(ans, target, tmpArr);
   // console.log(ans)
   // dp
-  let dp = Array([candidates.length]).fill(0)
-  dp[1]
+  let dp = Array([candidates.length]).fill(0);
+  dp[1];
   for (let i = 2; i <= candidates.length; i++) {
     for (let j = 1; j <= target; j++) {
       // dp[]
     }
   }
-  return ans
-}
-console.log(combinationSum2([10, 1, 2, 7, 6, 1, 5], 8))
-console.log(combinationSum2([2, 5, 2, 1, 2], 5))
+  return ans;
+};
+console.log(combinationSum2([10, 1, 2, 7, 6, 1, 5], 8));
+console.log(combinationSum2([2, 5, 2, 1, 2], 5));
 
-var combinationSum2 = function (candidates, target) { }
+var combinationSum2 = function (candidates, target) {};

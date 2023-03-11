@@ -1,10 +1,10 @@
 /********
- *给定一个无重复元素的数组 candidates 和一个目标数 target ，
- 找出 candidates 中所有可以使数字和为 target 的组合。
+39. 组合总和
+给定一个无重复元素的数组 candidates 和一个目标数 target ，
+找出 candidates 中所有可以使数字和为 target 的组合。
 candidates 中的数字可以无限制重复被选取。
 
 说明：
-
 所有数字（包括 target）都是正整数。
 解集不能包含重复的组合。 
 示例 1:
@@ -28,7 +28,7 @@ candidates 中的数字可以无限制重复被选取。
   [2,2,2,2],
   [2,3,3],
   [3,5]
-] 
+]
  */
 
 #include <algorithm>
@@ -65,6 +65,7 @@ int combinationSum(vector<int> &candidates, int target)
   // 目前主要需要提升动态规划能力，所以这里尝试先算出数量
   // 用一个一位数组dp，dp[x]表示在目标为x时的解的数量
   // 那么dp[x]应该为dp[x-candidates[0~size-1]]的和
+  // !20230307 这是个错误的518的解法，这是求排列数，1，2和2，1会被当成不同的解法
   for (int j = 1; j <= target; j++)
   {
     for (int i = 0; i < candidates.size(); i++)

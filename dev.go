@@ -1,16 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
-	c := make(chan int)
-	for i := 0; i <= 10; i++ {
-		fmt.Println(111)
-		c <- i
+	in := bufio.NewScanner(os.Stdin)
+	in.Scan()
+	for in.Scan() {
+		str := in.Text()
+
+		fmt.Println(str) //将切片连接成字符串
 	}
-	go func() {
-		for item := range c {
-			fmt.Println(item)
-		}
-	}()
 }

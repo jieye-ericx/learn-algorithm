@@ -84,7 +84,6 @@ func mergeInBetween(list1 *ListNode, a int, b int, list2 *ListNode) *ListNode {
 	}
 	l0.Next = l
 	if a != 0 {
-
 		return list1
 	} else {
 		return list2
