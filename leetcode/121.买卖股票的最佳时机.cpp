@@ -25,8 +25,6 @@ int main()
 int maxProfit(vector<int> &prices)
 {
   int minP = prices[0], ans = 0;
-  //!dp[i]表示第i天卖出能获得的最大收入,明显最大收入取决于当天的价格-之前的最小价格
-
   for (int i = 1; i < prices.size(); i++)
   {
     ans = max(ans, prices[i] - minP);

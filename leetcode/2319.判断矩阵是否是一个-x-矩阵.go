@@ -75,8 +75,4 @@ func checkXMatrix(grid [][]int) bool {
 	return true
 }
 
-func main() {
-
-}
-
 // @lc code=end

@@ -76,16 +76,19 @@
  *     Right *TreeNode
  * }
  */
-func removeSubfolders(folder []string) (ans []string) {
-	sort.Strings(folder)
-	ans = append(ans, folder[0])
-	for _, f := range folder[1:] {
-		last := ans[len(ans)-1]
-		if !strings.HasPrefix(f, last) || f[len(last)] != '/' {
-			ans = append(ans, f)
+func evaluateTree(root *TreeNode) bool {
+	if root.Left == nil {
+		if root.Val == 1 {
+			return true
+		} else {
+			return false
 		}
 	}
-	return
+	if root.Val == 2 {
+		return evaluateTree(root.Left) || evaluateTree(root.Right)
+	} else {
+		return evaluateTree(root.Left) && evaluateTree(root.Right)
+	}
 }
 
 // @lc code=end

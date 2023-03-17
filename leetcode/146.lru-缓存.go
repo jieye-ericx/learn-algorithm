@@ -94,13 +94,14 @@ func Constructor(capacity int) LRUCache {
 	l.tail.pre = l.root
 	return l
 }
+
+// 把node2插入到node1前面
 func (this *LRUCache) ch(node1, node2 *node) {
 	if node1 == node2 {
 		return
 	}
 	node2.pre.next = node2.next
 	node2.next.pre = node2.pre
-
 	node1.pre.next = node2
 	node2.pre = node1.pre
 	node1.pre = node2
@@ -113,13 +114,6 @@ func (this *LRUCache) Get(key int) (ans int) {
 	}
 	ans = node.v
 	this.ch(this.root.next, node)
-	// fmt.Println("Get ")
-	// tt := this.root
-	// for tt != nil {
-	// 	fmt.Println(tt.k, tt.v, tt.pre, tt.next)
-	// 	tt = tt.next
-	// }
-	// fmt.Println()
 	return ans
 }
 
@@ -150,12 +144,6 @@ func (this *LRUCache) Put(key int, value int) {
 			this.tail.pre = newTail
 			this.cnt--
 		}
-		// tt := this.root
-		// for tt != nil {
-		// 	fmt.Println(tt.k, tt.v, tt.pre, tt.next)
-		// 	tt = tt.next
-		// }
-		// fmt.Println()
 	}
 }
 
