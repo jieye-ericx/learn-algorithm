@@ -18,8 +18,8 @@
  *
  * nums[0] = 0
  * nums[1] = 1
- * 当 2  时，nums[2 * i] = nums[i]
- * 当 2  时，nums[2 * i + 1] = nums[i] + nums[i + 1]
+ * 当 2 <= 2 * i <= n 时，nums[2 * i] = nums[i]
+ * 当 2 <= 2 * i + 1 <= n  时，nums[2 * i + 1] = nums[i] + nums[i + 1]
  *
  *
  * 返回生成数组 nums 中的 最大 值。
@@ -81,7 +81,7 @@ var getMaximumGenerated = function (n) {
   const nums = new Array(n + 1).fill(0);
   nums[1] = 1;
   for (let i = 2; i <= n; ++i) {
-    nums[i] = nums[Math.floor(i / 2)] + i % 2 * nums[Math.floor(i / 2) + 1];
+    nums[i] = nums[Math.floor(i / 2)] + (i % 2) * nums[Math.floor(i / 2) + 1];
   }
   return Math.max(...nums);
 };

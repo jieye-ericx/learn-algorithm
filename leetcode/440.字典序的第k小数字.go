@@ -45,38 +45,36 @@
 // @lc code=start
 package main
 
-import "fmt"
-
-func main() {
-	fmt.Println(findKthNumber(100, 90))
-}
+// func main() {
+// 	fmt.Println(findKthNumber(100, 90))
+// }
 
 // !遍历会超时！
-func findKthNumber(n int, k int) int {
-	cnt := 0
-	var ans int
-	var recursion func(int)
-	recursion = func(d int) {
-		if d > n || cnt == k {
-			return
-		}
-		cnt++
-		fmt.Println(d)
-		if cnt == k {
-			ans = d
-			return
-		}
-		recursion(d * 10)
-		li := d % 10
-		if li != 9 {
-			recursion(d + 1)
-		} else {
-			return
-		}
-	}
-	recursion(1)
-	return ans
-}
+// func findKthNumber(n int, k int) int {
+// 	cnt := 0
+// 	var ans int
+// 	var recursion func(int)
+// 	recursion = func(d int) {
+// 		if d > n || cnt == k {
+// 			return
+// 		}
+// 		cnt++
+// 		fmt.Println(d)
+// 		if cnt == k {
+// 			ans = d
+// 			return
+// 		}
+// 		recursion(d * 10)
+// 		li := d % 10
+// 		if li != 9 {
+// 			recursion(d + 1)
+// 		} else {
+// 			return
+// 		}
+// 	}
+// 	recursion(1)
+// 	return ans
+// }
 
 // ！写得很妙
 func getSteps(cur, n int) (steps int) {

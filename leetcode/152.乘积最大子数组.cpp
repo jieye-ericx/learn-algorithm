@@ -71,26 +71,26 @@ public:
         for (int i = 1; i < nums.size(); i++)
         {
             dp[i] = max(dp[i - 1] * nums[i], max(nums[i], dp1[i - 1] * nums[i]));
-            dp1[i] = min(dp1[i - 1] * nums[i], max(nums[i], dp[i - 1] * nums[i]));
+            dp1[i] = min(dp1[i - 1] * nums[i], min(nums[i], dp[i - 1] * nums[i]));
             ans = max(dp[i], ans);
         }
         return ans;
     }
 };
 
-int main()
-{
-    vector<int> a(9);
-    a[0] = -2;
-    a[1] = 1;
-    a[2] = -3;
-    a[3] = 4;
-    a[4] = -1;
-    a[5] = 2;
-    a[6] = 1;
-    a[7] = -5;
-    a[8] = 4;
-    cout << maxSubArray(a);
-    return 0;
-}
+// int main()
+// {
+//     vector<int> a(9);
+//     a[0] = -2;
+//     a[1] = 1;
+//     a[2] = -3;
+//     a[3] = 4;
+//     a[4] = -1;
+//     a[5] = 2;
+//     a[6] = 1;
+//     a[7] = -5;
+//     a[8] = 4;
+//     cout << maxSubArray(a);
+//     return 0;
+// }
 // @lc code=end

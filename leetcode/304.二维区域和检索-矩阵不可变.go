@@ -68,17 +68,13 @@
 */
 package main
 
-import "fmt"
-
 // @lc code=start
 type NumMatrix struct {
-	m, n int
-	a    [][]int
-	up   [][]int
-	left [][]int
+	sums [][]int
 }
 
-// !这和1139不一样，不需要使用up left两个数组，只要一个就能算和 这样相当于一维前缀和在每次计算的时候仍然需要一个n的复杂度
+// !这和1139不一样，不需要使用up left两个数组，只要一个就能算和 这样相当于一维前缀和
+// !在每次计算的时候仍然需要一个n的复杂度
 //
 //	func Constructor(matrix [][]int) NumMatrix {
 //		arr := NumMatrix{
@@ -132,10 +128,10 @@ func (nm *NumMatrix) SumRegion(row1, col1, row2, col2 int) int {
 	return nm.sums[row2+1][col2+1] - nm.sums[row1][col2+1] - nm.sums[row2+1][col1] + nm.sums[row1][col1]
 }
 
-func main() {
-	obj := Constructor([][]int{{3, 0, 1, 4, 2}, {5, 6, 3, 2, 1}, {1, 2, 0, 1, 5}, {4, 1, 0, 1, 7}, {1, 0, 3, 0, 5}})
-	fmt.Println(obj)
-}
+// func main() {
+// 	obj := Constructor([][]int{{3, 0, 1, 4, 2}, {5, 6, 3, 2, 1}, {1, 2, 0, 1, 5}, {4, 1, 0, 1, 7}, {1, 0, 3, 0, 5}})
+// 	fmt.Println(obj)
+// }
 
 /**
  * Your NumMatrix object will be instantiated and called as such:

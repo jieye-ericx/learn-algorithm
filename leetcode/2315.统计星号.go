@@ -72,8 +72,9 @@ func ii(s string) int {
 	}
 	return ans
 }
-func main() {
-	ii("l|*e*et|c**o|*de|")
-}
+
+// func main() {
+// 	ii("l|*e*et|c**o|*de|")
+// }
 
 // @lc code=end

@@ -88,20 +88,20 @@ var allPathsSourceTarget = function (graph) {
     tmp = [0],
     dfs = (node) => {
       if (node === n - 1) {
-        ans.push([...tmp])
+        ans.push([...tmp]);
       }
       graph[node].forEach((ele) => {
         if (!vis[ele]) {
-          vis[ele] = 1
-          tmp.push(ele)
-          dfs(ele)
-          tmp.pop()
-          vis[ele] = 0
+          vis[ele] = 1;
+          tmp.push(ele);
+          dfs(ele);
+          tmp.pop();
+          vis[ele] = 0;
         }
-      })
-    }
-  dfs(0)
-  return ans
+      });
+    };
+  dfs(0);
+  return ans;
 };
-allPathsSourceTarget([[1], []])
+// allPathsSourceTarget([[1], []])
 // @lc code=end

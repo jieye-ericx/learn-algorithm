@@ -83,7 +83,6 @@ func alphabetBoardPath(target string) string {
 	nowz := false
 	for _, v := range target {
 		if v == 'z' {
-
 			if nowz {
 				ans += "!"
 				continue

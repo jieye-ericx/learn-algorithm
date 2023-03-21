@@ -116,11 +116,11 @@ func min(x, y int) int {
 //			return ans
 //		}
 //	}
-func min(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
-}
+// func min(x, y int) int {
+// 	if x < y {
+// 		return x
+// 	}
+// 	return y
+// }
 
 // @lc code=end

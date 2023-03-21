@@ -82,7 +82,8 @@ var minAbsoluteSumDiff = function (nums1, nums2) {
   const n = nums1.length;
   const rec = [...nums1];
   rec.sort((a, b) => a - b);
-  let sum = 0, maxn = 0;
+  let sum = 0,
+    maxn = 0;
   for (let i = 0; i < n; i++) {
     const diff = Math.abs(nums1[i] - nums2[i]);
     sum = (sum + diff) % MOD;
@@ -98,7 +99,8 @@ var minAbsoluteSumDiff = function (nums1, nums2) {
 };
 //! 「找到 nums1 中最接近 nums2[i] 的值」，这个值可能在二分查找过程中的 mid - 1 / mid / mid + 1 中出现，为了不侵入二分查找，可以转化为「找到 nums1 中大于等于 nums2[i] 的最小下标 j」，那么该值可能在 j（j < n） 或 j - 1（j > 0）
 const binarySearch = (rec, target) => {
-  let low = 0, high = rec.length - 1;
+  let low = 0,
+    high = rec.length - 1;
   if (rec[high] < target) {
     return high + 1;
   }
@@ -111,9 +113,7 @@ const binarySearch = (rec, target) => {
     }
   }
   return low;
-}
+};
 
-
-minAbsoluteSumDiff([1, 7, 5], [2, 3, 5])
+// minAbsoluteSumDiff([1, 7, 5], [2, 3, 5])
 // @lc code=end
-

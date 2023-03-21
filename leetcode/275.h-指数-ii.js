@@ -50,20 +50,19 @@
  * @return {number}
  */
 var hIndex = function (citations) {
-  const n = citations.length
-  let ans = -Infinity
+  const n = citations.length;
+  let ans = -Infinity;
   for (let i = n - 1; i >= 0; i--) {
-    const ele = citations[i]
+    const ele = citations[i];
     if (ele <= n - i) {
-      ans = Math.max(ele, ans)
-      break
+      ans = Math.max(ele, ans);
+      break;
     } else {
-      ans = n - i
+      ans = n - i;
     }
   }
-  return ans === undefined ? n : ans
+  return ans === undefined ? n : ans;
 };
 // @lc code=end
 
-console.log(hIndex([0]));
-
+// console.log(hIndex([0]));

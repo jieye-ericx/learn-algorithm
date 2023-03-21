@@ -12,7 +12,7 @@
  * Total Accepted:    10.6K
  * Total Submissions: 20.7K
  * Testcase Example:  '["TimeMap","set","get","get","set","get","get"]\n' +
-  '[[],["foo","bar",1],["foo",1],["foo",3],["foo","bar2",4],["foo",4],["foo",5]]'
+ *'[[],["foo","bar",1],["foo",1],["foo",3],["foo","bar2",4],["foo",4],["foo",5]]'
  *
  * 创建一个基于时间的键值存储类 TimeMap，它支持下面两个操作：
  *
@@ -38,15 +38,15 @@
  * 输入：inputs = ["TimeMap","set","get","get","set","get","get"], inputs =
  * [[],["foo","bar",1],["foo",1],["foo",3],["foo","bar2",4],["foo",4],["foo",5]]
  * 输出：[null,null,"bar","bar",null,"bar2","bar2"]
- * 解释： 
- * TimeMap kv;  
- * kv.set("foo", "bar", 1); // 存储键 "foo" 和值 "bar" 以及时间戳 timestamp = 1  
- * kv.get("foo", 1);  // 输出 "bar"  
+ * 解释：
+ * TimeMap kv;
+ * kv.set("foo", "bar", 1); // 存储键 "foo" 和值 "bar" 以及时间戳 timestamp = 1
+ * kv.get("foo", 1);  // 输出 "bar"
  * kv.get("foo", 3); // 输出 "bar" 因为在时间戳 3 和时间戳 2 处没有对应 "foo" 的值，所以唯一的值位于时间戳 1
- * 处（即 "bar"）  
- * kv.set("foo", "bar2", 4);  
- * kv.get("foo", 4); // 输出 "bar2"  
- * kv.get("foo", 5); // 输出 "bar2"  
+ * 处（即 "bar"）
+ * kv.set("foo", "bar2", 4);
+ * kv.get("foo", 4); // 输出 "bar2"
+ * kv.get("foo", 5); // 输出 "bar2"
  *
  *
  *
@@ -76,58 +76,38 @@
  * Initialize your data structure here.
  */
 var TimeMap = function () {
-  this.map = new Map()
-
+  this.map = new Map();
 };
 
-/**
- * @param {string} key
- * @param {string} value
- * @param {number} timestamp
- * @return {void}
- */
 TimeMap.prototype.set = function (key, value, timestamp) {
-
   if (this.map.has(key)) {
-    let targetMap = this.map.get(key)
-    targetMap.set(timestamp, value)
+    this.map.get(key).push([value, timestamp]);
   } else {
-    let newMap = new Map()
-    newMap.set(timestamp, value)
-    this.map.set(key, newMap)
+    this.map.set(key, [[value, timestamp]]);
   }
 };
 
-/**
- * @param {string} key
- * @param {number} timestamp
- * @return {string}
- */
 TimeMap.prototype.get = function (key, timestamp) {
-  let targetMap = this.map.get(key)
-  if (targetMap === undefined) {
-    return ''
-  }
-  let ans = targetMap.get(timestamp)
-  if (ans === undefined) {
-    ans = ''
-    let diff = Infinity
-    // !由于插入targetMap时是无序的，这样写遍历targetMap中所有的key没有必要
-    // for (let [key, value] of targetMap.entries()) {
-    //   if (key > timestamp) continue
-    //   if (timestamp - key < diff) {
-    //     diff = timestamp - key
-    //     ans = value
-    //   }
-    // }
-    // !应该直接思考找最接近timestamp的
-    for (let i = timestamp; i >= 1; i--) {
-      if (targetMap.get(i) !== undefined) {
-        return targetMap.get(i)
+  let pairs = this.map.get(key);
+  if (pairs) {
+    let low = 0,
+      high = pairs.length - 1;
+    while (low <= high) {
+      let mid = Math.floor((high - low) / 2) + low;
+      if (pairs[mid][1] > timestamp) {
+        high = mid - 1;
+      } else if (pairs[mid][1] < timestamp) {
+        low = mid + 1;
+      } else {
+        return pairs[mid][0];
       }
     }
+    if (high >= 0) {
+      return pairs[high][0];
+    }
+    return "";
   }
-  return ans
+  return "";
 };
 
 /**
@@ -138,13 +118,11 @@ TimeMap.prototype.get = function (key, timestamp) {
  */
 
 // let kv = new TimeMap()
-// kv.set("foo", "bar", 1); // 存储键 "foo" 和值 "bar" 以及时间戳 timestamp = 1  
-// kv.get("foo", 1);  // 输出 "bar"  
-// kv.get("foo", 3); // 输出 "bar" 因为在时间戳 3 和时间戳 2 处没有对应 "foo" 的值，所以唯一的值位于时间戳 1 处（即 "bar"）  
+// kv.set("foo", "bar", 1); // 存储键 "foo" 和值 "bar" 以及时间戳 timestamp = 1
+// kv.get("foo", 1);  // 输出 "bar"
+// kv.get("foo", 3); // 输出 "bar" 因为在时间戳 3 和时间戳 2 处没有对应 "foo" 的值，所以唯一的值位于时间戳 1 处（即 "bar"）
 // kv.set("foo", "bar2", 4);
-// kv.get("foo", 4); // 输出 "bar2"  
-// kv.get("foo", 5); // 输出 "bar2"  
-
+// kv.get("foo", 4); // 输出 "bar2"
+// kv.get("foo", 5); // 输出 "bar2"
 
 // @lc code=end
-

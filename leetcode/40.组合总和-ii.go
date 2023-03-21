@@ -80,14 +80,13 @@ func combinationSum2(candidates []int, target int) [][]int {
 			return
 		}
 		for i := tmpI; i < n && candidates[i] <= left; i++ {
-			// ! i > tmpI 就可以避免判断是否去重了，太妙了
+			// ! i > tmpI candidates[i] == candidates[i-1]就可以避免判断是否去重了,即防止1，1，4，5，6这种有两个1的数组，太妙了
 			if i > tmpI && candidates[i] == candidates[i-1] {
 				continue
 			}
 			if len(cmp) >= 1 && cmp[len(cmp)-1] > candidates[i] {
 				continue
 			}
-			// fmt.Println(cmp)
 			dfs(i+1, left-candidates[i], append(cmp, candidates[i]))
 		}
 	}
@@ -98,5 +97,5 @@ func combinationSum2(candidates []int, target int) [][]int {
 // func main() {
 // 	combinationSum2([]int{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 30)
 // }
-0-=sdx
+
 // @lc code=end

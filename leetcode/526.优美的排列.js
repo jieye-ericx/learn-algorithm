@@ -58,27 +58,27 @@ var countArrangement = function (n) {
     ans = 0,
     dfs = (dep) => {
       if (dep == n + 1) {
-        ans++
-        return
+        ans++;
+        return;
       }
       for (let value of ch[dep]) {
-        if (vis[value]) continue
-        vis[value] = 1
-        dfs(dep + 1)
-        vis[value] = 0
+        if (vis[value]) continue;
+        vis[value] = 1;
+        dfs(dep + 1);
+        vis[value] = 0;
       }
-    }
+    };
   // !ch[i]表示在1-n的数字中，可以放在第i个位置的数字的集合
   for (let i = 1; i <= n; i++) {
     for (let j = 1; j <= n; j++) {
       if (i % j === 0 || j % i === 0) {
-        ch[i].add(j)
+        ch[i].add(j);
       }
     }
   }
-  console.log(ch);
-  dfs(1)
-  return ans
+  // console.log(ch);
+  dfs(1);
+  return ans;
 };
-console.log(countArrangement(6));
+// console.log(countArrangement(6));
 // @lc code=end

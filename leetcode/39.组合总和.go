@@ -71,9 +71,9 @@ func combinationSum(candidates []int, target int) [][]int {
 	ans := [][]int{}
 	// !有了下面的方法就不需要m去重了
 	// m := map[string]int{}
-	var dfs func(tmpI, left int, cmp []int)
+	var dfs func(left int, cmp []int)
 
-	dfs = func(tmpI, left int, cmp []int) {
+	dfs = func(left int, cmp []int) {
 		if left == 0 {
 			// !注意这里cmp因为是指针，直接复制会有数据的不一致问题
 			a := make([]int, len(cmp))
@@ -84,16 +84,16 @@ func combinationSum(candidates []int, target int) [][]int {
 
 		for i := 0; i < n && candidates[i] <= left; i++ {
 			// ! i > tmpI 就可以避免判断是否去重了,即防止1，1，4，5，6这种有两个1的数组，太妙了
-			if i > tmpI && candidates[i] == candidates[i-1] {
+			if i > 0 && candidates[i] == candidates[i-1] {
 				continue
 			}
 			if len(cmp) >= 1 && cmp[len(cmp)-1] > candidates[i] {
 				continue
 			}
-			dfs(tmpI+1, left-candidates[i], append(cmp, candidates[i]))
+			dfs(left-candidates[i], append(cmp, candidates[i]))
 		}
 	}
-	dfs(0, target, []int{})
+	dfs(target, []int{})
 	return ans
 }
 

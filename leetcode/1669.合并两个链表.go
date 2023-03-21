@@ -64,10 +64,10 @@
  */
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+// type ListNode struct {
+// 	Val  int
+// 	Next *ListNode
+// }
 
 func mergeInBetween(list1 *ListNode, a int, b int, list2 *ListNode) *ListNode {
 	l, l0 := list1, list2
@@ -89,19 +89,20 @@ func mergeInBetween(list1 *ListNode, a int, b int, list2 *ListNode) *ListNode {
 		return list2
 	}
 }
-func main() {
-	list1 := &ListNode{Val: 0}
-	list1.Next = &ListNode{Val: 1}
-	list1.Next.Next = &ListNode{Val: 2}
-	list1.Next.Next.Next = &ListNode{Val: 3}
-	list1.Next.Next.Next.Next = &ListNode{Val: 4}
-	list1.Next.Next.Next.Next.Next = &ListNode{Val: 5}
 
-	list2 := &ListNode{Val: 1000000}
-	list2.Next = &ListNode{Val: 1000001}
-	list2.Next.Next = &ListNode{Val: 1000002}
+// func main() {
+// 	list1 := &ListNode{Val: 0}
+// 	list1.Next = &ListNode{Val: 1}
+// 	list1.Next.Next = &ListNode{Val: 2}
+// 	list1.Next.Next.Next = &ListNode{Val: 3}
+// 	list1.Next.Next.Next.Next = &ListNode{Val: 4}
+// 	list1.Next.Next.Next.Next.Next = &ListNode{Val: 5}
 
-	mergeInBetween(list1, 3, 4, list2)
-}
+// 	list2 := &ListNode{Val: 1000000}
+// 	list2.Next = &ListNode{Val: 1000001}
+// 	list2.Next.Next = &ListNode{Val: 1000002}
+
+// 	mergeInBetween(list1, 3, 4, list2)
+// }
 
 // @lc code=end

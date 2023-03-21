@@ -21,20 +21,14 @@
  * 1])  。abs(x) 为 x 的绝对值。
  *
  *
- * 你可以执行以下 2 种操作任意次：
- *
- *
+ * 你可以执行以下2种操作任意次：
  * 减小 arr 中任意元素的值，使其变为一个 更小的正整数 。
  * 重新排列 arr 中的元素，你可以以任意顺序重新排列。
- *
- *
- * 请你返回执行以上操作后，在满足前文所述的条件下，arr 中可能的 最大值 。
+ * 请你返回执行以上操作后，在满足前文所述的条件下，arr中可能的 最大值 。
  *
  *
  *
  * 示例 1：
- *
- *
  * 输入：arr = [2,2,1,2,1]
  * 输出：2
  * 解释：
@@ -81,20 +75,19 @@
  * @return {number}
  */
 var maximumElementAfterDecrementingAndRearranging = function (arr) {
-  arr.sort((a, b) => a - b)
+  arr.sort((a, b) => a - b);
   // console.log(arr);
-  let n = arr.length, i = 1
-  arr[0] = 1
+  let n = arr.length,
+    i = 1;
+  arr[0] = 1;
   while (i < n) {
     if (Math.abs(arr[i] - arr[i - 1]) > 1) {
-      arr[i] = arr[i - 1] + 1
+      arr[i] = arr[i - 1] + 1;
     }
-    i++
+    i++;
   }
-  return arr[n - 1]
-
+  return arr[n - 1];
 };
 
 // maximumElementAfterDecrementingAndRearranging([1, 4, 51, 23]);
 // @lc code=end
-

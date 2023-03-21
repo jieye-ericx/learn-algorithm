@@ -49,9 +49,9 @@ package main
 
 import "fmt"
 
-func main() {
-	fmt.Println(largest1BorderedSquare([][]int{{1, 1, 0, 0}}))
-}
+// func main() {
+// 	fmt.Println(largest1BorderedSquare([][]int{{1, 1, 0, 0}}))
+// }
 
 // https://leetcode.cn/problems/largest-1-bordered-square/solution/zui-da-de-yi-1-wei-bian-jie-de-zheng-fan-74ce/
 func largest1BorderedSquare(grid [][]int) int {
@@ -79,55 +79,6 @@ func largest1BorderedSquare(grid [][]int) int {
 	return maxBorder * maxBorder
 }
 
-// ! 辛苦了半天没发现题目要求的正方形中间是可以有0的 这是221题
-func maximalSquare(grid [][]byte) int {
-	M, N := len(grid), len(grid[0])
-	dp := make([][]int, M)
-	ans := 0
-	for i, _ := range dp {
-		dp[i] = make([]int, N)
-	}
-	for i := 0; i < M; i++ {
-		if grid[i][0] == '1' {
-			dp[i][0] = 1
-			ans = 1
-		}
-	}
-	for i := 1; i < N; i++ {
-		if grid[0][i] == '1' {
-			dp[0][i] = 1
-			ans = 1
-		}
-	}
-	for i := 1; i < M; i++ {
-		for j := 1; j < N; j++ {
-			if dp[i-1][j] == 0 || dp[i][j-1] == 0 || grid[i][j] == '0' {
-				if grid[i][j] == '1' {
-					dp[i][j] = 1
-					ans = max(ans, dp[i][j])
-				} else {
-					dp[i][j] = 0
-				}
-			} else {
-				dp[i][j] = min(dp[i-1][j-1], min(dp[i-1][j], dp[i][j-1])) + 1
-				ans = max(ans, dp[i][j])
-			}
-		}
-	}
-	return ans * ans
-}
-
-func min(a, b int) int {
-	if a <= b {
-		return a
-	}
-	return b
-}
-func max(a, b int) int {
-	if a <= b {
-		return b
-	}
-	return a
-}
+// ! 辛苦了半天没发现题目要求的正方形中间是可以有0的（221题）
 
 // @lc code=end

@@ -69,7 +69,7 @@
 
 // @lc code=start
 // !这个写得好
-// https : // leetcode.cn/problems/make-sum-divisible-by-p/solution/tao-lu-qian-zhui-he-ha-xi-biao-pythonjav-rzl0/
+// https://leetcode.cn/problems/make-sum-divisible-by-p/solution/tao-lu-qian-zhui-he-ha-xi-biao-pythonjav-rzl0/
 class Solution
 {
 public:
@@ -95,52 +95,52 @@ public:
     }
 };
 // !只能过84 / 142个案例
-class Solution
-{
-public:
-    int minSubarray(vector<int> &nums, int p)
-    {
-        long long int sum = 0, ans = 214748364;
-        long long int le = 0, ri = 0;
-        for (int i = 0; i < nums.size(); i++)
-        {
-            sum += nums[i];
-        }
-        if (sum % p == 0)
-        {
-            return 0;
-        }
-        while (ri < nums.size())
-        {
-            while (sum % p != 0 && ri < nums.size())
-            {
-                sum -= nums[ri];
-                ri++;
-            }
-            cout << "1 ri le " << ri << " " << le << endl;
-            if (sum % p == 0 && sum > 0)
-            {
-                ans = min(ri - le, ans);
-            }
-            sum += nums[le];
-            le++;
-            while (sum % p != 0 && le < ri)
-            {
-                sum += nums[le];
-                le++;
-            }
-            cout << "2 ri le " << ri << " " << le << endl;
-            if (sum % p == 0 && sum > 0)
-            {
-                ans = min(ri - le, ans);
-            }
-        }
-        cout << sum;
-        if (ans == 214748364)
-        {
-            return -1;
-        }
-        return ans;
-    };
-};
+// class Solution
+// {
+// public:
+//     int minSubarray(vector<int> &nums, int p)
+//     {
+//         long long int sum = 0, ans = 214748364;
+//         long long int le = 0, ri = 0;
+//         for (int i = 0; i < nums.size(); i++)
+//         {
+//             sum += nums[i];
+//         }
+//         if (sum % p == 0)
+//         {
+//             return 0;
+//         }
+//         while (ri < nums.size())
+//         {
+//             while (sum % p != 0 && ri < nums.size())
+//             {
+//                 sum -= nums[ri];
+//                 ri++;
+//             }
+//             cout << "1 ri le " << ri << " " << le << endl;
+//             if (sum % p == 0 && sum > 0)
+//             {
+//                 ans = min(ri - le, ans);
+//             }
+//             sum += nums[le];
+//             le++;
+//             while (sum % p != 0 && le < ri)
+//             {
+//                 sum += nums[le];
+//                 le++;
+//             }
+//             cout << "2 ri le " << ri << " " << le << endl;
+//             if (sum % p == 0 && sum > 0)
+//             {
+//                 ans = min(ri - le, ans);
+//             }
+//         }
+//         cout << sum;
+//         if (ans == 214748364)
+//         {
+//             return -1;
+//         }
+//         return ans;
+//     };
+// };
 // @lc code=end

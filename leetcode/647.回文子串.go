@@ -51,26 +51,25 @@
 
 // @lc code=start
 func countSubstrings(s string) (ans int) {
-	ans = 0
 	n := len(s)
-	dp := make([][]bool, n+1)
-	for i := 0; i < n+1; i++ {
-		dp[i] = make([]bool, n+1)
+	ans = n //初始情况每个字符都是回文
+	dp := make([][]bool, n)
+	for i := 0; i < n; i++ {
+		dp[i] = make([]bool, n)
 	}
-	// !使用dp判断s[i-j]是否是回文
-	for i := n; i >= 0; i-- {
-		for j := i + 1; j < n+1; j++ {
-			if s[i-1] == s[j-1] {
-				if dp[i+1][j-1] {
+	// !单个字符当然是回文
+	for i := 0; i < n; i++ {
+		dp[i][i] = true
+	}
+	// !使用dp判断s[i-j]是否是回文 s[0-(n-1)]
+	for i := n - 1; i >= 0; i-- {
+		for j := i + 1; j < n; j++ {
+			if s[i] == s[j] {
+				// !要注意j-i < 2，即连续两个字符是回文的特殊情况
+				if dp[i+1][j-1] || j-i < 2 {
 					dp[i][j] = true
+					ans++
 				}
-			}
-		}
-	}
-	for i := 0; i < n+1; i++ {
-		for j := 0; j < n+1; j++ {
-			if dp[i][j] {
-				ans += 1
 			}
 		}
 	}

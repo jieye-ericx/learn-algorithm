@@ -85,27 +85,24 @@
  * @return {number[][]}
  */
 var verticalTraversal = function (root) {
-  let tmp = new Map(), ans = [], traversal = (dep, x, node, isLeft) => {
-    // dep为树的深度，直接加一就行
-    if (node.left) traversal(dep + 1, x - 1, node.left, isLeft)
-    if (!tmp.has(x))
-      tmp.set(x, [node.val])
-    else
-      tmp.get(x).push(node.val)
-    if (node.right) traversal(dep + 1, x + 1, node.right, isLeft)
-  }
-  // tmp.set(0, [root.val])
-  // if (root.left) traversal(1, -1, root, 1)
-  // if (root.right) traversal(1, 1, root, 0)
-  traversal(0, 0, root, 0)
+  let tmp = new Map(),
+    ans = [],
+    traversal = (dep, x, node, isLeft) => {
+      // dep为树的深度，直接加一就行
+      if (node.left) traversal(dep + 1, x - 1, node.left, isLeft);
+      if (!tmp.has(x)) tmp.set(x, [node.val]);
+      else tmp.get(x).push(node.val);
+      if (node.right) traversal(dep + 1, x + 1, node.right, isLeft);
+    };
+  traversal(0, 0, root, 0);
 
   for (let [key, value] of tmp) {
     ans.push({
       x: key,
-      val: value
-    })
+      val: value,
+    });
   }
-  ans.sort((a, b) => a.x - b.x)
-  return ans.map(item => item.val.sort((a, b) => a - b))
+  ans.sort((a, b) => a.x - b.x);
+  return ans.map((item) => item.val.sort((a, b) => a - b));
 };
 // @lc code=end

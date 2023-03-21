@@ -13,9 +13,9 @@
  * Total Submissions: 43.9K
  * Testcase Example:  '[1,-1,1]\n3\n-4'
  *
- * 给你一个整数数组 nums ，和两个整数 limit 与 goal 。数组 nums 有一条重要属性：abs(nums[i])  。
+ * 给你一个整数数组 nums ，和两个整数 limit 与 goal 。数组 nums 有一条重要属性：abs(nums[i]) <= limit
  *
- * 返回使数组元素总和等于 goal 所需要向数组中添加的 最少元素数量 ，添加元素 不应改变 数组中 abs(nums[i])  这一属性。
+ * 返回使数组元素总和等于 goal 所需要向数组中添加的 最少元素数量 ，添加元素 不应改变 数组中 abs(nums[i]) <= limit 这一属性。
  *
  * 注意，如果 x >= 0 ，那么 abs(x) 等于 x ；否则，等于 -x 。
  *
@@ -50,8 +50,6 @@
  */
 package main
 
-import "fmt"
-
 // @lc code=start
 func minElements(nums []int, limit int, goal int) int {
 	sun := 0
@@ -72,8 +70,8 @@ func minElements(nums []int, limit int, goal int) int {
 	return ans
 }
 
-func main() {
-	fmt.Println(minElements([]int{1, -1, 1}, 3, -4))
-}
+// func main() {
+// 	fmt.Println(minElements([]int{1, -1, 1}, 3, -4))
+// }
 
 // @lc code=end

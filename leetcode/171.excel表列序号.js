@@ -77,14 +77,17 @@
  * @return {number}
  */
 var titleToNumber = function (columnTitle) {
-  let base = 1 / 26
-  return columnTitle.split('').reverse().reduce((pre, value, index, arr) => {
-    console.log(pre, value, base);
-    base *= 26
-    return pre + (value.charCodeAt() - 64) * base
-  }, 0)
+  let base = 1 / 26;
+  return columnTitle
+    .split("")
+    .reverse()
+    .reduce((pre, value, index, arr) => {
+      // console.log(pre, value, base);
+      base *= 26;
+      return pre + (value.charCodeAt() - 64) * base;
+    }, 0);
 };
 
-titleToNumber('AB')
+// titleToNumber('AB')
 
 // @lc code=end

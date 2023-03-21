@@ -63,17 +63,16 @@
  * @return {number}
  */
 var nthSuperUglyNumber = function (n, primes) {
-  // primes.sort((a, b) => a - b)
   let ans = new Array(n + 1),
-    lastNum = 1,
     nn = primes.length,
-    base = new Array(nn).fill(1)
-  ans[1] = 1
+    base = new Array(nn).fill(1);
+  ans[1] = 1;
   for (let i = 2; i <= n; i++) {
     let tmp = {
-      val: Infinity, index: [- 1]
-    }
-    let j = 0
+      val: Infinity,
+      index: [-1],
+    };
+    let j = 0;
     for (; j < nn; j++) {
       // !下面的写法虽然(ans[base[j]] * primes[j] > ans[i - 1])过滤了重复值，但是如3*7和7*3
       // !应该两个j都要++，这里只加了一个，所以会导致错过一些中间值
@@ -94,20 +93,20 @@ var nthSuperUglyNumber = function (n, primes) {
       //   tmp.index = j
       // }
       if (ans[base[j]] * primes[j] < tmp.val) {
-        tmp.val = ans[base[j]] * primes[j]
-        tmp.index = [j]
+        tmp.val = ans[base[j]] * primes[j];
+        tmp.index = [j];
       } else if (ans[base[j]] * primes[j] === tmp.val) {
-        tmp.index.push(j)
+        tmp.index.push(j);
       }
     }
-    tmp.index.forEach(ele => base[ele]++)
+    tmp.index.forEach((ele) => base[ele]++);
     // base[tmp.index]++
-    ans[i] = tmp.val
+    ans[i] = tmp.val;
     // console.log('i=' + i, ' val=' + ans[i], base);
     // console.log(ans);
   }
 
-  return ans[n]
+  return ans[n];
 };
-nthSuperUglyNumber(15, [3, 5, 7, 11, 19, 23, 29, 41, 43, 47])
+// nthSuperUglyNumber(15, [3, 5, 7, 11, 19, 23, 29, 41, 43, 47])
 // @lc code=end

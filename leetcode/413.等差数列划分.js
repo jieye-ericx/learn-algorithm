@@ -61,22 +61,21 @@
  * @return {number}
  */
 var numberOfArithmeticSlices = function (nums) {
-  let n = nums.length
+  let n = nums.length;
   if (n < 3) {
-    return 0
+    return 0;
   }
-  let dp = new Array(n).fill(0), find = (index, nums) => {
-    let num = 0, now = index, d = nums[index] - nums[index - 1]
-    while (--index >= 1 && d === nums[index] - nums[index - 1]) {
-
-    }
-    return now - index - 1
-  }
+  let dp = new Array(n).fill(0),
+    find = (index, nums) => {
+      let now = index,
+        d = nums[index] - nums[index - 1];
+      while (--index >= 1 && d === nums[index] - nums[index - 1]) {}
+      return now - index - 1;
+    };
   for (let i = 2; i < n; i++) {
-    dp[i] = dp[i - 1] + find(i, nums)
+    dp[i] = dp[i - 1] + find(i, nums);
   }
-  return dp[n - 1]
-  // console.log(find(5, nums));
+  return dp[n - 1];
 };
-numberOfArithmeticSlices([-1, 2, 3, 4, 5, 6])
+// numberOfArithmeticSlices([-1, 2, 3, 4, 5, 6])
 // @lc code=end

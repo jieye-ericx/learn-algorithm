@@ -55,27 +55,27 @@
  * @return {string}
  */
 var reverseStr = function (s, k) {
-  let ss = s.split(''), n = ss.length
-  let i = j = 0, set = []
+  let ss = s.split(""),
+    n = ss.length;
+  let i = (j = 0),
+    set = [];
   while ((i + 1) * k < n) {
-    set.push(ss.slice(i * k, (i + 1) * k))
-    i++
+    set.push(ss.slice(i * k, (i + 1) * k));
+    i++;
   }
   // !此时i代表这set的元素个数，但i*k并不一定大于等于n
-  console.log(set, i * k, i, n);
+  // console.log(set, i * k, i, n);
   for (let k = 0; k < i; k += 2) {
-    set[k].reverse()
+    set[k].reverse();
   }
   if (i * k < n) {
-
     if (!(i & 1)) {
-      set.push(ss.slice(i * k).reverse())
+      set.push(ss.slice(i * k).reverse());
     } else {
-      set.push(ss.slice(i * k))
-
+      set.push(ss.slice(i * k));
     }
   }
-  return set.flat().join('')
+  return set.flat().join("");
 };
-reverseStr("abcdefg", k = 2)
+// reverseStr("abcdefg", (k = 2));
 // @lc code=end

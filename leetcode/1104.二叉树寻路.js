@@ -53,25 +53,28 @@
  * @return {number[]}
  */
 var pathInZigZagTree = function (label) {
-  let ans = [], la = label, h = 1
+  let ans = [],
+    la = label,
+    h = 1;
   while (la > 0) {
-    ans.unshift(la)
-    la = Math.floor(la / 2)
+    ans.unshift(la);
+    la = Math.floor(la / 2);
   }
   //!此时ans为正常顺序的二叉树的路径，接下来需要按照label在奇数行还是偶数行讨论
   while (Math.pow(2, h) <= label) {
-    h++
+    h++;
   }
   // console.log(h);
-  let i = h & 1 ? 2 : 1
+  let i = h & 1 ? 2 : 1;
 
   for (; i < h; i += 2) {
-    const st = Math.pow(2, i - 1), ed = Math.pow(2, i) - 1
+    const st = Math.pow(2, i - 1),
+      ed = Math.pow(2, i) - 1;
     // console.log(st, ed);
-    ans[i - 1] = st + ed - ans[i - 1]
+    ans[i - 1] = st + ed - ans[i - 1];
   }
-  return ans
+  return ans;
 };
 
-console.log(pathInZigZagTree(16));
+// console.log(pathInZigZagTree(16));
 // @lc code=end

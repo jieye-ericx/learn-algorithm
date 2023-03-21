@@ -53,53 +53,10 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
 // @lc code=start
-func largestSumOfAverages(nums []int, k int) float64 {
-	n := len(nums)
-	return doit(math.MinInt64, 0, k, 0, n, 0, 0, -1, nums)
-}
-func doit(maxans, ans float64, k, tmpk, n, tmpn, c, precn int, nums []int) float64 {
-	if tmpk == k && tmpn != n {
-		return 0
-	}
-	if tmpn == n {
-		fmt.Println(111)
-		fmt.Println(maxans, ans, k, tmpk, n, tmpn, c, precn)
-		if precn != n-1 {
-
-			v := tmpn - 1 - precn
-			ans = ans + float64(c)/float64(v)
-		}
-		fmt.Println(maxans, ans, k, tmpk, n, tmpn, c, precn)
-		if ans > maxans {
-			maxans = ans
-		}
-		return maxans
-	}
-	// 到tmpn结束
-	cc := c + nums[tmpn]
-	v := tmpn - precn
-	maxans1 := doit(maxans, ans+float64(cc)/float64(v), k, tmpk+1, n, tmpn+1, 0, tmpn, nums)
-	// 到tmpn不结束
-	maxans2 := doit(maxans, ans, k, tmpk, n, tmpn+1, c+nums[tmpn], precn, nums)
-	if maxans1 > maxans2 {
-		return maxans1
-	} else {
-		return maxans2
-	}
-}
-func main() {
-	//函数体
-	fmt.Println("21312")
-	fmt.Println(largestSumOfAverages([]int{9, 1, 2, 3, 9}, 3))
-}
-
-//超时了。。。
-
 func largestSumOfAverages(nums []int, k int) float64 {
 	n := len(nums)
 	prefix := make([]float64, n+1)
@@ -122,5 +79,48 @@ func largestSumOfAverages(nums []int, k int) float64 {
 	}
 	return dp[n][k]
 }
+
+// !我的方法超时了
+// func largestSumOfAverages(nums []int, k int) float64 {
+// 	n := len(nums)
+// 	return doit(math.MinInt64, 0, k, 0, n, 0, 0, -1, nums)
+// }
+// func doit(maxans, ans float64, k, tmpk, n, tmpn, c, precn int, nums []int) float64 {
+// 	if tmpk == k && tmpn != n {
+// 		return 0
+// 	}
+// 	if tmpn == n {
+// 		fmt.Println(111)
+// 		fmt.Println(maxans, ans, k, tmpk, n, tmpn, c, precn)
+// 		if precn != n-1 {
+
+// 			v := tmpn - 1 - precn
+// 			ans = ans + float64(c)/float64(v)
+// 		}
+// 		fmt.Println(maxans, ans, k, tmpk, n, tmpn, c, precn)
+// 		if ans > maxans {
+// 			maxans = ans
+// 		}
+// 		return maxans
+// 	}
+// 	// 到tmpn结束
+// 	cc := c + nums[tmpn]
+// 	v := tmpn - precn
+// 	maxans1 := doit(maxans, ans+float64(cc)/float64(v), k, tmpk+1, n, tmpn+1, 0, tmpn, nums)
+// 	// 到tmpn不结束
+// 	maxans2 := doit(maxans, ans, k, tmpk, n, tmpn+1, c+nums[tmpn], precn, nums)
+// 	if maxans1 > maxans2 {
+// 		return maxans1
+// 	} else {
+// 		return maxans2
+// 	}
+// }
+// func main() {
+// 	//函数体
+// 	fmt.Println("21312")
+// 	fmt.Println(largestSumOfAverages([]int{9, 1, 2, 3, 9}, 3))
+// }
+
+//超时了。。。
 
 // @lc code=end

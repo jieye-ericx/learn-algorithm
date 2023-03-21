@@ -62,6 +62,7 @@
  */
 var isCovered = function (ranges, left, right) {
   const diff = new Array(52).fill(0); // 差分数组
+  // 用差分数组 diff 维护相邻两个整数的被覆盖区间数量变化量
   for (const [l, r] of ranges) {
     diff[l]++;
     diff[r + 1]--;

@@ -67,10 +67,12 @@ var findSecondMinimumValue = function (root) {
   let ans = -1;
   const rootvalue = root.val;
 
+  // 因为2-2-2-2-2&3这种情况，所以无法只通过查看根节点的左右孩子来确定第二大的数，所以要dfs
   const dfs = (node) => {
     if (node === null) {
       return;
     }
+    // node.val >= ans时，由当前节点为根的子树中所有节点的值都大于等于ans，我们就直接回溯
     if (ans !== -1 && node.val >= ans) {
       return;
     }
@@ -79,7 +81,7 @@ var findSecondMinimumValue = function (root) {
     }
     dfs(node.left);
     dfs(node.right);
-  }
+  };
 
   dfs(root);
   return ans;

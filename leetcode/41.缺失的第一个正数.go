@@ -61,7 +61,7 @@ func firstMissingPositive(nums []int) int {
 	for i := 0; i < n; i++ {
 		num := abs(nums[i])
 		if num <= n {
-			fmt.Println(num - 1)
+			// fmt.Println(num - 1)
 			nums[num-1] = -abs(nums[num-1])
 		}
 	}

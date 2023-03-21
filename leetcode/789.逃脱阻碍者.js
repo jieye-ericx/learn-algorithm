@@ -77,7 +77,7 @@
  *
  *
  */
-
+// !关键是答案中证明的阻碍者不可能能在玩家前往目的地的中途拦截
 // @lc code=start
 /**
  * @param {number[][]} ghosts
@@ -94,10 +94,10 @@ var escapeGhosts = function (ghosts, target) {
     }
   }
   return true;
-}
+};
 
 const manhattanDistance = (point1, point2) => {
   return Math.abs(point1[0] - point2[0]) + Math.abs(point1[1] - point2[1]);
-}
+};
 
 // @lc code=end

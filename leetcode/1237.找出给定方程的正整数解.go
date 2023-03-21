@@ -91,21 +91,19 @@
  */
 package main
 
-func main() {
-}
-func findSolution(customFunction func(int, int) int, z int) [][]int {
-	ans := make([][]int, 0)
-	for x := 1; x <= 1000; x++ {
-		for y := 1; y <= 1000; y++ {
-			if customFunction(x, y) == z {
-				ans = append(ans, []int{x, y})
-			} else if customFunction(x, y) > z {
-				break
-			}
-		}
-	}
-	return ans
-}
+// func findSolution(customFunction func(int, int) int, z int) [][]int {
+// 	ans := make([][]int, 0)
+// 	for x := 1; x <= 1000; x++ {
+// 		for y := 1; y <= 1000; y++ {
+// 			if customFunction(x, y) == z {
+// 				ans = append(ans, []int{x, y})
+// 			} else if customFunction(x, y) > z {
+// 				break
+// 			}
+// 		}
+// 	}
+// 	return ans
+// }
 
 // ! 最好的双指针
 func findSolution(customFunction func(int, int) int, z int) (ans [][]int) {

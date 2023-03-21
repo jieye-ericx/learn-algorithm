@@ -12,7 +12,7 @@
  * Total Accepted:    18.2K
  * Total Submissions: 36.8K
  * Testcase Example:  '["daniel","daniel","daniel","luis","luis","luis","luis"]\n' +
-  '["10:00","10:40","11:00","09:00","11:00","13:00","15:00"]'
+ * '["10:00","10:40","11:00","09:00","11:00","13:00","15:00"]'
  *
  *
  * 力扣公司的员工都使用员工卡来开办公室的门。每当一个员工使用一次他的员工卡，安保系统会记录下员工的名字和使用时间。如果一个员工在一小时时间内使用员工卡的次数大于等于三次，这个系统会自动发布一个
@@ -76,20 +76,19 @@
  * keyName[i] 只包含小写英文字母。
  *
  *
-*/
+ */
 
 // @lc code=start
 package main
 
 import (
-	"fmt"
 	"sort"
 	"strconv"
 	"strings"
 )
 
 func alertNames(keyName []string, keyTime []string) []string {
-	m := make(map[string]int)
+	// m := make(map[string]int)
 	mm := make(map[string][]string)
 	ans := make(map[string]int)
 	for i, v := range keyName {
@@ -104,9 +103,9 @@ func alertNames(keyName []string, keyTime []string) []string {
 		}
 	}
 
-	for k := range m {
-		fmt.Println(k, m[k])
-	}
+	// for k := range m {
+	// 	fmt.Println(k, m[k])
+	// }
 	aa := getKeys2(ans)
 	sort.Strings(aa)
 	return aa
@@ -125,13 +124,14 @@ func getKeys2(m map[string]int) []string {
 	}
 	return keys
 }
-func main() {
-	// fmt.Println(alertNames([]string{"leslie", "leslie", "leslie", "clare", "clare", "clare", "clare"}, []string{"13:00", "13:20", "14:00", "18:00", "18:51", "19:30", "19:49"}))
-	// fmt.Println(alertNames([]string{"a", "a", "a", "a", "a", "a", "b", "b", "b", "b", "b"}, []string{"23:27", "03:14", "12:57", "13:35", "13:18", "21:58", "22:39", "10:49", "19:37", "14:14", "10:41"}))
-	// ["john","john","john"]
-	// ["23:58","23:59","00:01"]
-	fmt.Println(alertNames([]string{"john", "john", "john"}, []string{"23:58", "23:59", "00:01"}))
-}
+
+// func main() {
+// fmt.Println(alertNames([]string{"leslie", "leslie", "leslie", "clare", "clare", "clare", "clare"}, []string{"13:00", "13:20", "14:00", "18:00", "18:51", "19:30", "19:49"}))
+// fmt.Println(alertNames([]string{"a", "a", "a", "a", "a", "a", "b", "b", "b", "b", "b"}, []string{"23:27", "03:14", "12:57", "13:35", "13:18", "21:58", "22:39", "10:49", "19:37", "14:14", "10:41"}))
+// ["john","john","john"]
+// ["23:58","23:59","00:01"]
+// 	fmt.Println(alertNames([]string{"john", "john", "john"}, []string{"23:58", "23:59", "00:01"}))
+// }
 
 // @lc code=end
 

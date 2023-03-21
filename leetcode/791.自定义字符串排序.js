@@ -58,17 +58,19 @@
  * @return {string}
  */
 var customSortString = function (order, s) {
-  const o = order.split(''), ss = s.split(''),ans=[]
+  const o = order.split(""),
+    ss = s.split(""),
+    ans = [];
   // console.log(o);
   for (let i = 0; i < o.length; i++) {
-    let j=ss.findIndex(item => item === o[i])
+    let j = ss.findIndex((item) => item === o[i]);
     while (j !== -1) {
-      ans.push(ss[j])
-      ss.splice(j, 1)
-      j=ss.findIndex(item => item === o[i])
+      ans.push(ss[j]);
+      ss.splice(j, 1);
+      j = ss.findIndex((item) => item === o[i]);
     }
   }
-  return ans.concat(ss).join('')
+  return ans.concat(ss).join("");
 };
 // @lc code=end
-console.log(customSortString("kqep", "pekeq"))
+// console.log(customSortString("kqep", "pekeq"))

@@ -68,10 +68,12 @@
 var maxFrequency = function (nums, k) {
   nums.sort((a, b) => a - b);
   const n = nums.length;
-  let total = 0, res = 1, l = 0;
+  let total = 0,
+    res = 1,
+    l = 0;
 
   for (let r = 1; r < n; r++) {
-    // !这一步非常精妙
+    // !这一步非常精妙 https://leetcode.cn/problems/frequency-of-the-most-frequent-element/solution/1838-zui-gao-pin-yuan-su-de-pin-shu-shua-ub57/
     total += (nums[r] - nums[r - 1]) * (r - l);
     while (total > k) {
       total -= nums[r] - nums[l];

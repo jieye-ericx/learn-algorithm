@@ -49,29 +49,31 @@
  * @return {string}
  */
 var reverseVowels = function (s) {
-  const yy = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
-  let y = new Map(), n = s.length
+  const yy = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
+  let y = new Map(),
+    n = s.length;
   for (const ele of yy) {
-    y.set(ele, 1)
+    y.set(ele, 1);
   }
-  s = s.split('')
-  let i = 0, j = s.length - 1
+  s = s.split("");
+  let i = 0,
+    j = s.length - 1;
   while (i < j) {
     while (!y.has(s[i]) && i < n) {
-      i++
+      i++;
     }
     while (!y.has(s[j]) && j >= 0) {
-      j--
+      j--;
     }
-    if (i >= j) break
-    let t = s[i]
-    s[i] = s[j]
-    s[j] = t
+    if (i >= j) break;
+    let t = s[i];
+    s[i] = s[j];
+    s[j] = t;
     // console.log(s.join(''));
-    console.log(i, j);
-    i++, j--
+    // console.log(i, j);
+    i++, j--;
   }
-  return s.join('')
+  return s.join("");
 };
-console.log(reverseVowels(".,"));
+// console.log(reverseVowels(".,"));
 // @lc code=end

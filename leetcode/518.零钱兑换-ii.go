@@ -68,7 +68,6 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -77,7 +76,7 @@ func change(amount int, coins []int) int {
 	sort.Ints(coins)
 	f := make([]int, amount+1)
 	f[0] = 1
-	fmt.Println(f)
+	// fmt.Println(f)
 	for j := 0; j < len(coins); j++ {
 		for i := coins[j]; i <= amount; i++ {
 			f[i] += f[i-coins[j]]

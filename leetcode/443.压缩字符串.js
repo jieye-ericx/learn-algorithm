@@ -92,25 +92,29 @@
 //   return chars.length
 // };
 var compress = function (chars) {
-  let wri = rea = tmp = 0, ele, num = 0, n = chars.length
+  let wri = (rea = tmp = 0),
+    ele,
+    num = 0,
+    n = chars.length;
   for (rea = 0; rea < n; rea++) {
     if (chars[rea + 1] !== chars[rea]) {
-      num = rea - tmp + 1//为当前需要写入的元素的个数
-      ele = chars[rea]//为当前需要写入的元素
+      num = rea - tmp + 1; //为当前需要写入的元素的个数
+      ele = chars[rea]; //为当前需要写入的元素
       // console.log(ele, num);
-      tmp = rea + 1
-      chars[wri++] = ele
+      tmp = rea + 1;
+      chars[wri++] = ele;
       if (num > 1) {
-        String(num).split('').forEach(ele => chars[wri++] = ele)
-
+        String(num)
+          .split("")
+          .forEach((ele) => (chars[wri++] = ele));
       }
     }
   }
   // console.log(rea - tmp, chars[rea - 1]);
-  chars.splice(wri)
+  chars.splice(wri);
   // console.log(chars);
-  return chars.length
+  return chars.length;
 };
 
-console.log(compress(["a", "a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "c", "c", "c", 'd', 'd', 'd']));
+// console.log(compress(["a", "a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "c", "c", "c", 'd', 'd', 'd']));
 // @lc code=end

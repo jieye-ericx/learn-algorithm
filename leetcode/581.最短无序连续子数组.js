@@ -88,7 +88,7 @@ const isSorted = (nums) => {
     }
   }
   return true;
-}
+};
 
-findUnsortedSubarray([7, 8, 9, 1, 2, 5])
+// findUnsortedSubarray([7, 8, 9, 1, 2, 5])
 // @lc code=end

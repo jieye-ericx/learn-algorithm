@@ -42,14 +42,15 @@
  * @return {number}
  */
 var triangleNumber = function (nums) {
-  let n = nums.length, ans = 0
-  nums.sort((a, b) => a - b)
+  let n = nums.length,
+    ans = 0;
+  nums.sort((a, b) => a - b);
   for (let i = 0; i < n - 2; i++) {
-    if (nums[i] === 0) continue
-    let k = i
+    if (nums[i] === 0) continue;
+    let k = i;
     for (let j = i + 1; j < n - 1; j++) {
       while (k + 1 < n && nums[i] + nums[j] > nums[k + 1]) {
-        k++
+        k++;
       }
       // !这种写法每次k都从j+1开始，太浪费了
       // let k
@@ -58,12 +59,12 @@ var triangleNumber = function (nums) {
       //     break
       // }
       ans += Math.max(k - j, 0);
-      console.log(i, j, k, ans);
+      // console.log(i, j, k, ans);
     }
   }
-  return ans
+  return ans;
 };
 //                          0  1  2  3  4  5
-console.log(triangleNumber([1, 2, 3, 4, 5, 6]));
+// console.log(triangleNumber([1, 2, 3, 4, 5, 6]));
 
 // @lc code=end

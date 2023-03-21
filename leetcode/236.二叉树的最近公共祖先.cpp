@@ -96,53 +96,53 @@ public:
 };
 
 // !我写的还是太麻烦了
-class Solution
-{
-public:
-    TreeNode *p, *q, *a;
-    bool pp, qq, done;
-    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
-    {
-        this->p = p;
-        this->q = q;
-        pp = false;
-        qq = false;
-        qq = false;
-        done = false;
-        dfs(root);
-        return this->a;
-    }
-    int dfs(TreeNode *node)
-    {
-        int a = 0, a1 = 0, a2 = 0;
-        if (this->done)
-        {
-            return a;
-        }
-        if (node->left != nullptr)
-        {
-            a1 = dfs(node->left);
-        }
-        if (node->right != nullptr)
-        {
-            a2 = dfs(node->right);
-        }
-        if (node == p)
-        {
-            a = 1;
-        }
-        if (node == q)
-        {
-            a = 2;
-        }
-        if ((a1 + a2 == 3) || (node == p && (a1 == 2 || a2 == 2)) || (node == q && (a1 == 1 || a2 == 1)))
-        {
-            this->done = true;
-            this->a = node;
-            return 100;
-        }
-        return a != 0 ? a : a1 != 0 ? a1
-                                    : a2;
-    }
-};
+// class Solution
+// {
+// public:
+//     TreeNode *p, *q, *a;
+//     bool pp, qq, done;
+//     TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
+//     {
+//         this->p = p;
+//         this->q = q;
+//         pp = false;
+//         qq = false;
+//         qq = false;
+//         done = false;
+//         dfs(root);
+//         return this->a;
+//     }
+//     int dfs(TreeNode *node)
+//     {
+//         int a = 0, a1 = 0, a2 = 0;
+//         if (this->done)
+//         {
+//             return a;
+//         }
+//         if (node->left != nullptr)
+//         {
+//             a1 = dfs(node->left);
+//         }
+//         if (node->right != nullptr)
+//         {
+//             a2 = dfs(node->right);
+//         }
+//         if (node == p)
+//         {
+//             a = 1;
+//         }
+//         if (node == q)
+//         {
+//             a = 2;
+//         }
+//         if ((a1 + a2 == 3) || (node == p && (a1 == 2 || a2 == 2)) || (node == q && (a1 == 1 || a2 == 1)))
+//         {
+//             this->done = true;
+//             this->a = node;
+//             return 100;
+//         }
+//         return a != 0 ? a : a1 != 0 ? a1
+//                                     : a2;
+//     }
+// };
 // @lc code=end

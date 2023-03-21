@@ -99,7 +99,8 @@ var unhappyFriends = function (n, preferences, pairs) {
   }
   const match = new Array(n).fill(0);
   for (const pair of pairs) {
-    let person0 = pair[0], person1 = pair[1];
+    let person0 = pair[0],
+      person1 = pair[1];
     match[person0] = person1;
     match[person1] = person0;
   }
@@ -119,5 +120,5 @@ var unhappyFriends = function (n, preferences, pairs) {
   return unhappyCount;
 };
 
-unhappyFriends(4, [[1, 2, 3], [3, 2, 0], [3, 1, 0], [1, 2, 0]], [[0, 1], [2, 3]])
+// unhappyFriends(4, [[1, 2, 3], [3, 2, 0], [3, 1, 0], [1, 2, 0]], [[0, 1], [2, 3]])
 // @lc code=end
