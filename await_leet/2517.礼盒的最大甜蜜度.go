@@ -67,7 +67,7 @@ package main
 import "sort"
 
 func maximumTastiness(price []int, k int) int {
-	sort.Ints(price)
+	// sort.Ints(price)
 
 }
 
