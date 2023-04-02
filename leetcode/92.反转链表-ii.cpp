@@ -59,40 +59,68 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+// struct ListNode
+// {
+//     int val;
+//     ListNode *next;
+//     ListNode() : val(0), next(nullptr) {}
+//     ListNode(int x) : val(x), next(nullptr) {}
+//     ListNode(int x, ListNode *next) : val(x), next(next) {}
+// };
 class Solution
 {
 public:
     ListNode *reverseBetween(ListNode *head, int left, int right)
     {
-        ListNode *newHead, *preP, *tmp, *copyP = head, *tail, *tail1;
-        int cnt = 0;
-        while ((++cnt) < left && copyP)
+        ListNode *virtualHead, *leftNode, *rightNode, *preLeftNode, *afterRightNode, *root;
+        virtualHead = new ListNode();
+        virtualHead->next = head;
+        root = head;
+        preLeftNode = virtualHead;
+        int cnt = 1;
+        while (cnt < left && head)
         {
-            tail = copyP;
-            copyP = copyP->next;
+            cnt++;
+            head = head->next;
+            preLeftNode = preLeftNode->next;
         }
-        if (!copyP)
-            return head;
-        tail1 = copyP;       // 2
-        preP = copyP;        // 2
-        copyP = copyP->next; // 3
-        /* 输入：head = [1,2,3,4,5], left = 2, right = 4
-           输出：[1,4,3,2,5] */
-        while (++cnt <= right && copyP)
+        leftNode = head;
+        if (head == nullptr)
+            return root;
+        while (cnt < right && head)
         {
-            tmp = copyP->next; // 4
-            copyP->next = preP;
-            preP = copyP;
-            copyP = tmp;
+            cnt++;
+            head = head->next;
         }
-        tail1->next = copyP;
-        if (left > 1)
+        rightNode = head;
+        afterRightNode = rightNode->next;
+        rightNode->next = nullptr;
+        reverseList(leftNode);
+        preLeftNode->next = rightNode;
+        leftNode->next = afterRightNode;
+        return virtualHead->next;
+    }
+    void reverseList(ListNode *head)
+    {
+        ListNode *pre, *now, *next;
+        now = head;
+        if (head == nullptr)
         {
-            tail->next = preP;
-            return head;
+            return;
         }
-        else
-            return preP;
+        next = now->next;
+        while (now != nullptr)
+        {
+            // cout << now->val << endl;
+            now->next = pre;
+            pre = now;
+            now = next;
+            if (now == nullptr)
+            {
+                break;
+            }
+            next = next->next;
+        }
     }
 };
 // @lc code=end
