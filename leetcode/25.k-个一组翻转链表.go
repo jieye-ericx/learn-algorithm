@@ -65,69 +65,63 @@
  */
 package main
 
-import "fmt"
+// type ListNode struct {
+// 	Val  int
+// 	Next *ListNode
+// }
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+// func main() {
+// 	a := &ListNode{
+// 		Val:  1,
+// 		Next: nil,
+// 	}
+// 	b := &ListNode{
+// 		Val:  2,
+// 		Next: nil,
+// 	}
+// 	c := &ListNode{
+// 		Val:  3,
+// 		Next: nil,
+// 	}
+// 	d := &ListNode{
+// 		Val:  4,
+// 		Next: nil,
+// 	}
+// 	e := &ListNode{
+// 		Val:  5,
+// 		Next: nil,
+// 	}
+// 	a.Next = b
+// 	b.Next = c
+// 	c.Next = d
+// 	d.Next = e
 
-func main() {
-	a := &ListNode{
-		Val:  1,
-		Next: nil,
-	}
-	b := &ListNode{
-		Val:  2,
-		Next: nil,
-	}
-	c := &ListNode{
-		Val:  3,
-		Next: nil,
-	}
-	d := &ListNode{
-		Val:  4,
-		Next: nil,
-	}
-	e := &ListNode{
-		Val:  5,
-		Next: nil,
-	}
-	a.Next = b
-	b.Next = c
-	c.Next = d
-	d.Next = e
-
-	ans := reverseKGroup(a, 2)
-	for ans != nil {
-		fmt.Println(ans.Val)
-		ans = ans.Next
-	}
-}
+//		ans := reverseKGroup(a, 2)
+//		for ans != nil {
+//			fmt.Println(ans.Val)
+//			ans = ans.Next
+//		}
+//	}
 func reverseKGroup(head *ListNode, k int) *ListNode {
-	var cnt int
 	if head == nil {
 		return nil
-	} else {
-		cnt = 1
 	}
+	cnt := 1
 
-	var tmpNext *ListNode
-	tmpNow, tmpHead, tmpTail := head, head, head
-	for cnt < k && tmpNow != nil {
-		tmpNow = tmpNow.Next
-		cnt++
+	var next *ListNode
+	newHead, newTail := head, head
+	for ; cnt < k && head != nil; cnt++ {
+		head = head.Next
 	}
-	if cnt != k || tmpNow == nil {
-		return tmpHead
+	if cnt != k || head == nil {
+		return newTail
 	} else {
-		fmt.Println(tmpNow.Val)
-		tmpNext = tmpNow.Next
-		tmpHead = tmpNow
-		tmpHead.Next = nil
-		reverseList(tmpTail)
-		tmpTail.Next = reverseKGroup(tmpNext, k)
-		return tmpHead
+		newHead = head
+		next = head.Next
+		head.Next = nil
+		reverseList(newTail)
+		newTail.Next = reverseKGroup(next, k)
+		return newHead
 	}
 }
 
@@ -138,15 +132,11 @@ func reverseList(head *ListNode) {
 	}
 	var pre, next, now *ListNode
 	now = head
-	next = now.Next
 	for now != nil {
+		next = now.Next
 		now.Next = pre
 		pre = now
 		now = next
-		if now == nil {
-			break
-		}
-		next = next.Next
 	}
 	// return pre
 }

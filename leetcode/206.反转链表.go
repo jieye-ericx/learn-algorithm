@@ -66,26 +66,22 @@
  */
 package main
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+// type ListNode struct {
+// 	Val  int
+// 	Next *ListNode
+// }
 
 func reverseList(head *ListNode) *ListNode {
 	if head == nil {
-		return head
+		return nil
 	}
 	var pre, next, now *ListNode
 	now = head
-	next = now.Next
 	for now != nil {
+		next = now.Next
 		now.Next = pre
 		pre = now
 		now = next
-		if now == nil {
-			break
-		}
-		next = next.Next
 	}
 	return pre
 }
